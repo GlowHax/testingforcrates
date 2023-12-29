@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c91281d4544970488b858cd9c7bb2e0, type: 3}
+  m_Name: Broken Lightbulb
+  m_EditorClassIdentifier: 
+  Name: Broken Lightbulb
+  AmountInInventory: 110
+  MaterialDrops:
+  - Material: {fileID: 11400000, guid: 6db07c34d403636498c9bd5a50133869, type: 2}
+    Amount: 1
+    Probability: 0.7
+  - Material: {fileID: 11400000, guid: 05dd0a801d4b5cb4193ff4bc47940203, type: 2}
+    Amount: 1
+    Probability: 0.3
+  Description: 'Very sharp on the edges. '
+  Icon: {fileID: 21300000, guid: c9049c8c46afe9947b20f1bff81dcbe2, type: 3}

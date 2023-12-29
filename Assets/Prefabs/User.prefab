@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &750735040643804540
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 750735040643804542}
+  - component: {fileID: 750735040643804541}
+  m_Layer: 0
+  m_Name: User
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &750735040643804542
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750735040643804540}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.13638783, y: -1.1767802, z: 2.6611316}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &750735040643804541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750735040643804540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b07e737d8031241bc5ead3fd84b404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Coins: 500
+  Level: 4
+  XP: 0
+  Inventory:
+    Crates:
+    - {fileID: 11400000, guid: 39a9b959ed0d6e446ab525873d98f518, type: 2}
+    - {fileID: 11400000, guid: 137109abfd677034dabfe464bcc574ab, type: 2}
+    - {fileID: 11400000, guid: 6f5aa106a05a9ca4abeccccfa22ce174, type: 2}
+    Materials:
+    - {fileID: 11400000, guid: 18945b3ad92a8b949a2302a84120c5e8, type: 2}
+    - {fileID: 11400000, guid: 61058b3d93fac4948aaa840116747b74, type: 2}
+    - {fileID: 11400000, guid: 6db07c34d403636498c9bd5a50133869, type: 2}
+    - {fileID: 11400000, guid: e0f455f500411084aa7ded7a2507c833, type: 2}
+    - {fileID: 11400000, guid: 05dd0a801d4b5cb4193ff4bc47940203, type: 2}
+    Scraps:
+    - {fileID: 11400000, guid: 77d62567f83db544db3dfb06cd5c0edb, type: 2}
+    - {fileID: 11400000, guid: 330ac1c31ca1e5c4783beb39499a7be8, type: 2}
+    - {fileID: 11400000, guid: a7445886889b38b4d9a986416ce3f34d, type: 2}
+    - {fileID: 11400000, guid: dbdf075145e30d14797c21a5281872e7, type: 2}
+    - {fileID: 11400000, guid: 8f1723d657dd7284ab5d24edef789fc1, type: 2}
+    Items:
+    - {fileID: 0}
+  CratePrefabs:
+  - {fileID: 7588583079713308170, guid: 748ca1ae71f53dd44bfe5d7fec18fec9, type: 3}
+  - {fileID: 7156934484736017579, guid: 271148e059a9aac43a0f5b02b9d3a5ff, type: 3}
+  - {fileID: 7156934484736017579, guid: a0a40ddd0ce31d14fa657cbe419c8e01, type: 3}
+  XPToNextLvl: 3200000064000000c8000000f4010000ee020000e8030000dc050000d0070000b80b0000
+  LevelRewardsMoney: fa000000f4010000e8030000d0070000c4090000d0070000e8030000
+  LevelRewardsCrates:
+  - NoCrate
+  - NoCrate
+  - Uncommon Crate
+  - NoCrate
+  - Common Crate
+  - Uncommon Crate
+  - NoCrate
+  - NoCrate
+  - Rare Crate

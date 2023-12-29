@@ -1,0 +1,243 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UserStartingSettings
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: 08b07e737d8031241bc5ead3fd84b404,
+      type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Coins
+    value: 500
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Level
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: XP
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Inventory.Crates.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Inventory.Crates.Array.data[0]
+    value: 
+    objectReference: {fileID: 11400000, guid: 39a9b959ed0d6e446ab525873d98f518, type: 2}
+  - target: {fileID: 0}
+    propertyPath: Inventory.Crates.Array.data[1]
+    value: 
+    objectReference: {fileID: 11400000, guid: 137109abfd677034dabfe464bcc574ab, type: 2}
+  - target: {fileID: 0}
+    propertyPath: Inventory.Crates.Array.data[2]
+    value: 
+    objectReference: {fileID: 11400000, guid: 6f5aa106a05a9ca4abeccccfa22ce174, type: 2}
+  - target: {fileID: 0}
+    propertyPath: Inventory.Materials.Array.size
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Inventory.Materials.Array.data[0]
+    value: 
+    objectReference: {fileID: 11400000, guid: 18945b3ad92a8b949a2302a84120c5e8, type: 2}
+  - target: {fileID: 0}
+    propertyPath: Inventory.Materials.Array.data[1]
+    value: 
+    objectReference: {fileID: 11400000, guid: 61058b3d93fac4948aaa840116747b74, type: 2}
+  - target: {fileID: 0}
+    propertyPath: Inventory.Materials.Array.data[2]
+    value: 
+    objectReference: {fileID: 11400000, guid: 6db07c34d403636498c9bd5a50133869, type: 2}
+  - target: {fileID: 0}
+    propertyPath: Inventory.Materials.Array.data[3]
+    value: 
+    objectReference: {fileID: 11400000, guid: e0f455f500411084aa7ded7a2507c833, type: 2}
+  - target: {fileID: 0}
+    propertyPath: Inventory.Materials.Array.data[4]
+    value: 
+    objectReference: {fileID: 11400000, guid: 05dd0a801d4b5cb4193ff4bc47940203, type: 2}
+  - target: {fileID: 0}
+    propertyPath: Inventory.Scraps.Array.size
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Inventory.Scraps.Array.data[0]
+    value: 
+    objectReference: {fileID: 11400000, guid: 77d62567f83db544db3dfb06cd5c0edb, type: 2}
+  - target: {fileID: 0}
+    propertyPath: Inventory.Scraps.Array.data[1]
+    value: 
+    objectReference: {fileID: 11400000, guid: 330ac1c31ca1e5c4783beb39499a7be8, type: 2}
+  - target: {fileID: 0}
+    propertyPath: Inventory.Scraps.Array.data[2]
+    value: 
+    objectReference: {fileID: 11400000, guid: a7445886889b38b4d9a986416ce3f34d, type: 2}
+  - target: {fileID: 0}
+    propertyPath: Inventory.Scraps.Array.data[3]
+    value: 
+    objectReference: {fileID: 11400000, guid: dbdf075145e30d14797c21a5281872e7, type: 2}
+  - target: {fileID: 0}
+    propertyPath: Inventory.Scraps.Array.data[4]
+    value: 
+    objectReference: {fileID: 11400000, guid: 8f1723d657dd7284ab5d24edef789fc1, type: 2}
+  - target: {fileID: 0}
+    propertyPath: Inventory.Items.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Inventory.Items.Array.data[0]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: CratePrefabs.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: CratePrefabs.Array.data[0]
+    value: 
+    objectReference: {fileID: 7588583079713308170, guid: 748ca1ae71f53dd44bfe5d7fec18fec9,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: CratePrefabs.Array.data[1]
+    value: 
+    objectReference: {fileID: 7156934484736017579, guid: 271148e059a9aac43a0f5b02b9d3a5ff,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: CratePrefabs.Array.data[2]
+    value: 
+    objectReference: {fileID: 7156934484736017579, guid: a0a40ddd0ce31d14fa657cbe419c8e01,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: XPToNextLvl.Array.size
+    value: 9
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: XPToNextLvl.Array.data[0]
+    value: 50
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: XPToNextLvl.Array.data[1]
+    value: 100
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: XPToNextLvl.Array.data[2]
+    value: 200
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: XPToNextLvl.Array.data[3]
+    value: 500
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: XPToNextLvl.Array.data[4]
+    value: 750
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: XPToNextLvl.Array.data[5]
+    value: 1000
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: XPToNextLvl.Array.data[6]
+    value: 1500
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: XPToNextLvl.Array.data[7]
+    value: 2000
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: XPToNextLvl.Array.data[8]
+    value: 3000
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LevelRewardsMoney.Array.size
+    value: 7
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LevelRewardsMoney.Array.data[0]
+    value: 250
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LevelRewardsMoney.Array.data[1]
+    value: 500
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LevelRewardsMoney.Array.data[2]
+    value: 1000
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LevelRewardsMoney.Array.data[3]
+    value: 2000
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LevelRewardsMoney.Array.data[4]
+    value: 2500
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LevelRewardsMoney.Array.data[5]
+    value: 2000
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LevelRewardsMoney.Array.data[6]
+    value: 1000
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LevelRewardsCrates.Array.size
+    value: 9
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LevelRewardsCrates.Array.data[0]
+    value: NoCrate
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LevelRewardsCrates.Array.data[1]
+    value: NoCrate
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LevelRewardsCrates.Array.data[2]
+    value: Uncommon Crate
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LevelRewardsCrates.Array.data[3]
+    value: NoCrate
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LevelRewardsCrates.Array.data[4]
+    value: Common Crate
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LevelRewardsCrates.Array.data[5]
+    value: Uncommon Crate
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LevelRewardsCrates.Array.data[6]
+    value: NoCrate
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LevelRewardsCrates.Array.data[7]
+    value: NoCrate
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LevelRewardsCrates.Array.data[8]
+    value: Rare Crate
+    objectReference: {fileID: 0}
+  m_ExcludedProperties: []

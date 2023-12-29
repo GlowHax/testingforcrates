@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aede24f824ef2242aba3603cca9c0ee, type: 3}
+  m_Name: CommonCrate
+  m_EditorClassIdentifier: 
+  Name: Common Crate
+  UnlockLvl: 0
+  MoneyCost: 500
+  Type: 0
+  MaterialCosts: []
+  Health: 10
+  AmountInInventory: 996
+  Stats: 'Coins: 100-2000
+
+
+    XP: 10-30
+
+
+    Materials:
+
+    Wood
+
+    Stone'
+  MoneyDrop: 400
+  XPDrop: 30
+  ScrapDropName: 
+  ScrapDropAmount: 0
+  moneyDrops: 64000000fa00000090010000ee020000e8030000d0070000
+  moneyDropOdds:
+  - 0.145
+  - 0.3
+  - 0.5
+  - 0.04
+  - 0.01
+  - 0.005
+  xpDrops: 0a000000140000001e000000
+  xpDropOdds:
+  - 0.35
+  - 0.5
+  - 0.15
+  scrapDrops:
+  - Scrap: {fileID: 0}
+    Amount: 0
+    Probability: 0.6
+  - Scrap: {fileID: 11400000, guid: 77d62567f83db544db3dfb06cd5c0edb, type: 2}
+    Amount: 1
+    Probability: 0.22
+  - Scrap: {fileID: 11400000, guid: a7445886889b38b4d9a986416ce3f34d, type: 2}
+    Amount: 1
+    Probability: 0.1
+  - Scrap: {fileID: 11400000, guid: dbdf075145e30d14797c21a5281872e7, type: 2}
+    Amount: 1
+    Probability: 0.08
