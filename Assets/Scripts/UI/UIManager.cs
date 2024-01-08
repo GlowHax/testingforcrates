@@ -8,19 +8,13 @@ using TMPro;
 
 public abstract class UIManager : MonoBehaviour
 {
-	[SerializeField] protected GameObject blackscreen;
 	[SerializeField] protected TMP_Text coinsHUD;
 	[SerializeField] protected GameObject levelHUD;
 	[SerializeField] protected TMP_Text levelCounter;
 	[SerializeField] protected Slider levelProgressBar;
 	[SerializeField] protected TMP_Text xpDetailTxt;
 
-	protected Interactor interactor;
-
 	private float xpFillSpeed = 0.75f;
-	private string prompt;
-
-	public string InteractionPromt => prompt;
 
 	public struct CountToNumber
 	{
@@ -102,18 +96,8 @@ public abstract class UIManager : MonoBehaviour
 		}
 	}
 
-	protected virtual void QuitUIPanel()
-	{
-
-	}
-
 	public virtual void GoToScene(string sceneName)
 	{
 		SceneManager.LoadScene(sceneName);
-	}
-
-	public virtual void QuitGame()
-	{
-		Application.Quit();
 	}
 }
