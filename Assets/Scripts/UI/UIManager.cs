@@ -49,7 +49,7 @@ public abstract class UIManager : MonoBehaviour
 			xpDetailTxt == null)
 			return;
 
-		levelCounter.text = $"{User.Instance.Level}";
+		levelCounter.text = $"{Player.Instance.Level}";
 
 		if (EventSystem.current.IsPointerOverGameObject())
 		{
@@ -63,7 +63,7 @@ public abstract class UIManager : MonoBehaviour
 				if(raycastResults[i].gameObject.layer == levelHUD.layer && 
 					raycastResults[i].gameObject.name == levelHUD.name)
 				{
-					xpDetailTxt.text = $"{User.Instance.XP}/{User.Instance.XPToNextLvl[User.Instance.Level - 1]}";
+					xpDetailTxt.text = $"{Player.Instance.XP}/{Player.Instance.XPToNextLvl[Player.Instance.Level - 1]}";
 					levelProgressBar.gameObject.SetActive(true);
 					FillLevelProgressToCurrentState();
 				}
@@ -81,7 +81,7 @@ public abstract class UIManager : MonoBehaviour
 		if (levelProgressBar == null)
 			return;
 
-		float targetProgress = User.Instance.GetLevelProgressPercentage();
+		float targetProgress = Player.Instance.GetLevelProgressPercentage();
 		if (levelProgressBar.value < targetProgress)
 		{
 			levelProgressBar.value += xpFillSpeed * Time.deltaTime;
@@ -92,7 +92,7 @@ public abstract class UIManager : MonoBehaviour
 	{
 		if(coinsHUD != null)
 		{
-			coinsHUD.text = $"{User.Instance.Coins}";
+			coinsHUD.text = $"{Player.Instance.Coins}";
 		}
 	}
 

@@ -92,7 +92,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7493907562105082920}
   - component: {fileID: 6950475087637349112}
-  - component: {fileID: 5473944704160728848}
   m_Layer: 13
   m_Name: Crowbar
   m_TagString: Untagged
@@ -134,22 +133,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5473944704160728848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7832997345486917266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94491ad661266940843c71c9dc05fc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Equipped: 0
-  m_name: CrowBar
-  type: 0
-  amountInInventory: 1
-  CraftingRecipe: []
-  animator: {fileID: 6950475087637349112}
-  maxCrateBreakDistance: 3

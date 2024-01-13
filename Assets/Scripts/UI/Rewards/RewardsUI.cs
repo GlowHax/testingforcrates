@@ -48,7 +48,7 @@ public class RewardsUI : UIManager
 	public void ClaimFreeCrate()
 	{
 		freeCrateTimer.ResetTimer();
-		User.Instance.Inventory.Crates.Find(x => freeCrate).AddToInventory(1);
+		Player.Instance.OldInventory.Crates.Find(x => freeCrate).AddToInventory(1);
 		freeCrateClaimButton.interactable = false;
 		freeCrateClaimText.text = "Not ready...";
 	}
@@ -56,11 +56,11 @@ public class RewardsUI : UIManager
 	public void ClaimDailyCrate()
 	{
 		dailyCrateTimer.ResetTimer();
-		for(int i = 0; i < User.Instance.Inventory.Crates.Count; i++)
+		for(int i = 0; i < Player.Instance.OldInventory.Crates.Count; i++)
 		{
-			if (User.Instance.Inventory.Crates[i].Type == CrateType.Daily)
+			if (Player.Instance.OldInventory.Crates[i].Type == CrateType.Daily)
 			{
-				User.Instance.Inventory.Crates[i].AddToInventory(1);
+				Player.Instance.OldInventory.Crates[i].AddToInventory(1);
 			}
 		}
 		dailyCrateClaimButton.interactable = false;

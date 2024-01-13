@@ -56,12 +56,12 @@ public class ShopUI : Terminal
 		switch (currentOffer)
 		{
 			case "crates":
-				for (int i = 0; i < User.Instance.Inventory.Crates.Count; i++)
+				for (int i = 0; i < Player.Instance.OldInventory.Crates.Count; i++)
 				{
-					CrateSO crate = User.Instance.Inventory.Crates[i];
+					CrateSO crate = Player.Instance.OldInventory.Crates[i];
 					if (crate.Type == CrateType.Main)
 					{
-						if (User.Instance.Level >= crate.UnlockLvl)
+						if (Player.Instance.Level >= crate.UnlockLvl)
 						{
 							CrateViewShopTemplate crateView =
 								Instantiate(ShopViewTemplate, shopScrollContent.transform).GetComponent<CrateViewShopTemplate>();
@@ -77,11 +77,11 @@ public class ShopUI : Terminal
 				break;
 
 			case "materials":
-				for (int i = 0; i < User.Instance.Inventory.Materials.Count; i++)
+				for (int i = 0; i < Player.Instance.OldInventory.Materials.Count; i++)
 				{
 					MaterialViewShopTemplate materialView =
 						Instantiate(ShopViewTemplate, shopScrollContent.transform).GetComponent<MaterialViewShopTemplate>();
-					materialView.Material = User.Instance.Inventory.Materials[i];
+					materialView.Material = Player.Instance.OldInventory.Materials[i];
 					materialView.Setup();
 				}
 				break;

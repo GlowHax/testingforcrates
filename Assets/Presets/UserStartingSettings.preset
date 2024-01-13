@@ -26,12 +26,28 @@ Preset:
     value: 
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: interactor
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: characterMovement
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: mouseLook
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: menu
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: Coins
     value: 500
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: Level
-    value: 4
+    value: 1
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: XP
@@ -128,6 +144,14 @@ Preset:
     value: 
     objectReference: {fileID: 7156934484736017579, guid: a0a40ddd0ce31d14fa657cbe419c8e01,
       type: 3}
+  - target: {fileID: 0}
+    propertyPath: ComboBonus
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: equippedItem
+    value: 
+    objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: XPToNextLvl.Array.size
     value: 9

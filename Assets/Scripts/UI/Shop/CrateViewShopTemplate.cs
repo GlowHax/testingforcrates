@@ -21,7 +21,7 @@ public class CrateViewShopTemplate : ShopUITemplate
 
 	public override void RefreshCostTextColor()
 	{
-		if (User.Instance.Coins < Crate.MoneyCost)
+		if (Player.Instance.Coins < Crate.MoneyCost)
 		{
 			costTxt.color = Color.gray;
 			buyButton.interactable = false;

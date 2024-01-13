@@ -5,89 +5,80 @@ using UnityEngine;
 
 public class Interactor : MonoBehaviour
 {
-	/*[HideInInspector]*/ public bool inReachOfTerminal = false;
+	[HideInInspector] public bool inReachOfTerminal = false;
 	[HideInInspector] public Terminal TerminalInReach;
 
 	[SerializeField] private Transform interactableCheck;
-	[SerializeField] private LayerMask crateMask;
 	[SerializeField] private LayerMask interactableMask;
-	[SerializeField] private LayerMask terminalMask;
-	[SerializeField] private CharacterMovement characterMovement;
-	[SerializeField] private MouseLook mouseLook;
 	[SerializeField] private GameObject hud;
 	[SerializeField] private GameObject interactInfoText;
 
-	private Camera playerCam;
-	private Terminal terminal;
+	private IInteractable interactable;
 	private bool interacting = false;
-	protected int numFound;
-	protected readonly Collider[] playerColliders = new Collider[1];
-
-	private void Start()
-	{
-		playerCam = Camera.main;
-	}
+	private readonly Collider[] colliders = new Collider[1];
 
 	void Update()
     {
-		if (Input.GetKeyUp(KeyCode.E) && interacting)
-		{
-			LockPlayerMovement(false);
-			hud.SetActive(true);
-			interacting = false;
-			if(terminal != null)
-			{
-				terminal.SwitchOff();
-				terminal = null;
-			}
-		}
-		else
+		if (!interacting)
 		{
 			CheckForInteractables();
 		}
+		else if (Input.GetKeyUp(KeyCode.E))
+		{
+			Player.Instance.FPMovement(true);
+			Player.Instance.FPMouse(true);
+			hud.SetActive(true);
+			interacting = false;
+			if(interactable != null)
+			{
+				interactable.Interact();
+				interactable = null;
+			}
+		}
 	}
 
-	protected void CheckForInteractables()
+	private void CheckForInteractables()
 	{
-		numFound = Physics.OverlapSphereNonAlloc(interactableCheck.position, 0.3f,
-					playerColliders, interactableMask);
-
-		if (numFound > 0 && !interacting)
+		int numFound = Physics.OverlapSphereNonAlloc(transform.position, 0.25f, colliders, interactableMask);
+		
+		if (numFound > 0)
 		{
-			Ray ray = new Ray(playerCam.transform.position, playerCam.transform.forward);
-			Debug.DrawRay(ray.origin, ray.direction);
-			RaycastHit hitInfo;
-			if (Physics.Raycast(ray, out hitInfo, 1.5f, terminalMask))
+			var iteractionPoint = colliders[0];
+			if(iteractionPoint != null)
 			{
-				terminal = hitInfo.transform.parent.GetComponent<Terminal>();
-
-				if (terminal != null)
+				Ray ray = new Ray(Player.Instance.Cam.transform.position, Player.Instance.Cam.transform.forward);
+				Debug.DrawRay(ray.origin, ray.direction);
+				RaycastHit hitInfo;
+				if (Physics.Raycast(ray, out hitInfo, 1.5f, LayerMask.GetMask("Interactable")))
 				{
-					interactInfoText.SetActive(true);
+					if (hitInfo.collider.isTrigger)
+						return;
 
-					if (Input.GetKeyUp(KeyCode.E))
+					interactable = hitInfo.transform.parent.GetComponent<IInteractable>();
+
+					if (interactable != null)
 					{
-						interacting = true;
-						LockPlayerMovement(true);
-						hud.SetActive(false);
-						terminal.SwitchOn();
+						interactInfoText.SetActive(true);
+
+						if (Input.GetKeyUp(KeyCode.E))
+						{
+							interacting = true;
+							Player.Instance.FPMovement(false);
+							Player.Instance.FPMouse(false);
+							hud.SetActive(false);
+							interactable.Interact();
+						}
 					}
 				}
-			}
-			else
-			{
-				interactInfoText.SetActive(false);
+				else
+				{
+					interactInfoText.SetActive(false);
+				}
 			}
 		}
 		else
 		{
 			interactInfoText.SetActive(false);
 		}
-	}
-
-	public void LockPlayerMovement(bool value)
-	{
-		characterMovement.LockMovement = value;
-		mouseLook.LockMovement = value;
 	}
 }

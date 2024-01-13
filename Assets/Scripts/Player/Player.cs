@@ -4,23 +4,28 @@ using UnityEngine;
 using System;
 
 [System.Serializable]
-public class Inventory
+public class OldInventory
 {
 	public List<CrateSO> Crates = new List<CrateSO>();
 	public List<MaterialSO> Materials = new List<MaterialSO>();
 	public List<ScrapSO> Scraps = new List<ScrapSO>();
-	public List<Item> Items = new List<Item>();
+	public List<Tool> Items = new List<Tool>();
 }
 
-public class User : MonoBehaviour
+public class Player : MonoBehaviour
 {
-	private static User instance;
-	public static User Instance { get { return instance; } }
+	private static Player instance;
+	public static Player Instance { get { return instance; } }
 
+	public Camera Cam;
+	public Interactor interactor;
+	public CharacterMovement characterMovement;
+	public MouseLook mouseLook;
 	public float Coins = 500;
 	public int Level = 1;
 	public int XP = 0;
-	public Inventory Inventory = new Inventory();
+	public OldInventory OldInventory = new OldInventory();
+	public Inventory Inventory;
 	public List<GameObject> CratePrefabs = new List<GameObject>();
 
 	public float ComboBonus = 0f;
@@ -53,6 +58,25 @@ public class User : MonoBehaviour
 	private void Update()
 	{
 		ManageEquippedItem();
+
+		if (equippedItem != null && Input.GetMouseButtonDown(0))
+		{
+			if (equippedItem.GetType() == typeof(Tool))
+			{
+				Tool equippedTool = equippedItem as Tool;
+				equippedTool.Use();
+			}
+		}
+	}
+
+	public void FPMovement(bool value)
+	{
+		Player.Instance.characterMovement.Active = value;
+	}
+
+	public void FPMouse(bool value)
+	{
+		Player.Instance.mouseLook.Active = value;
 	}
 
 	private void ManageEquippedItem()
@@ -62,15 +86,15 @@ public class User : MonoBehaviour
 			if (equippedItem == null)
 			{
 				//equip the crowbar
-				equippedItem = Inventory.Items[0];
-				equippedItem.Equipped = true;
-				equippedItem.gameObject.SetActive(true);
+				equippedItem = OldInventory.Items[0];
+				//equippedItem.Equipped = true;
+				//equippedItem.gameObject.SetActive(true);
 			}
 			else
 			{
 				//unequip crowbar
-				equippedItem.Equipped = false;
-				equippedItem.gameObject.SetActive(false);
+				//equippedItem.Equipped = false;
+				//equippedItem.gameObject.SetActive(false);
 				equippedItem = null;
 			}
 		}

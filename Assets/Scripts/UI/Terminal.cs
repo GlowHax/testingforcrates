@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Terminal : MonoBehaviour
+public abstract class Terminal : MonoBehaviour, IInteractable
 {
 	[HideInInspector] public bool switchedOn = false;
 
@@ -14,6 +14,18 @@ public abstract class Terminal : MonoBehaviour
 	protected int numFound;
 	protected readonly Collider[] playerColliders = new Collider[1];
 	protected bool playerIsLeaving = false;
+
+	public void Interact()
+	{
+		if(!switchedOn)
+		{
+			SwitchOn();
+		}
+		else
+		{
+			SwitchOff();
+		}
+	}
 
 	public virtual void SwitchOn()
 	{

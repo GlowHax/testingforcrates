@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-	public bool LockMovement = false;
+	[HideInInspector] public bool Active = true;
 
 	[SerializeField] private CharacterController controller;
 	[SerializeField] private Transform groundCheck;
@@ -29,11 +29,10 @@ public class CharacterMovement : MonoBehaviour
 			velocity.y = -2f;
 		}
 
-		if (!LockMovement)
-		{
-			ManageMovement();
-		}
+		if (!Active)
+			return;
 
+		ManageMovement();
 	}
 
 	private void OnControllerColliderHit(ControllerColliderHit hit)

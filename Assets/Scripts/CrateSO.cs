@@ -92,11 +92,11 @@ public class CrateSO : ScriptableObject
 
 	public void Purchase()
 	{
-		if (User.Instance.Coins >= MoneyCost)
+		if (Player.Instance.Coins >= MoneyCost)
 		{
 			if (MaterialCosts.Length == 0)
 			{
-				User.Instance.Coins -= MoneyCost;
+				Player.Instance.Coins -= MoneyCost;
 				AddToInventory(1);
 				return;
 			}
@@ -104,7 +104,7 @@ public class CrateSO : ScriptableObject
 			int affortableCosts = 0;
 			for (int i = 0; i < MaterialCosts.Length; i++)
 			{
-				if (User.Instance.Inventory.Materials.Find(x => MaterialCosts[i].Material).AmountInInventory >= MaterialCosts[i].Amount)
+				if (Player.Instance.OldInventory.Materials.Find(x => MaterialCosts[i].Material).AmountInInventory >= MaterialCosts[i].Amount)
 				{
 					affortableCosts++;
 				}
@@ -114,8 +114,8 @@ public class CrateSO : ScriptableObject
 			{
 				for (int i = 0; i < MaterialCosts.Length; i++)
 				{
-					User.Instance.Coins -= MoneyCost;
-					User.Instance.Inventory.Materials.Find(x => MaterialCosts[i].Material).AmountInInventory -= MaterialCosts[i].Amount;
+					Player.Instance.Coins -= MoneyCost;
+					Player.Instance.OldInventory.Materials.Find(x => MaterialCosts[i].Material).AmountInInventory -= MaterialCosts[i].Amount;
 					AddToInventory(1);
 				}
 			}
@@ -131,15 +131,15 @@ public class CrateSO : ScriptableObject
 	{
 		CalcutlateDrops();
 		AmountInInventory--;
-		User.Instance.Coins += MoneyDrop;
-		User.Instance.AddXPToUser(XPDrop);
+		Player.Instance.Coins += MoneyDrop;
+		Player.Instance.AddXPToUser(XPDrop);
 		if (ScrapDropName != "")
 		{
-			for (int i = 0; i < User.Instance.Inventory.Materials.Count; i++)
+			for (int i = 0; i < Player.Instance.OldInventory.Materials.Count; i++)
 			{
-				if (User.Instance.Inventory.Materials[i].Name == ScrapDropName)
+				if (Player.Instance.OldInventory.Materials[i].Name == ScrapDropName)
 				{
-					User.Instance.Inventory.Materials[i].AmountInInventory += ScrapDropAmount;
+					Player.Instance.OldInventory.Materials[i].AmountInInventory += ScrapDropAmount;
 				}
 			}
 		}
@@ -157,7 +157,7 @@ public class CrateSO : ScriptableObject
 				moneySelections[i] = new RandomSelection(moneyDrops[i], moneyDropOdds[i]);
 			}
 			MoneyDrop = GetRandomValue(moneySelections);
-			MoneyDrop += (int)(MoneyDrop * User.Instance.ComboBonus);
+			MoneyDrop += (int)(MoneyDrop * Player.Instance.ComboBonus);
 		}
 
 		//calculate xpdrop

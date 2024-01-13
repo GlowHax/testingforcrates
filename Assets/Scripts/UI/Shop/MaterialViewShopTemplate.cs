@@ -21,7 +21,7 @@ public class MaterialViewShopTemplate : ShopUITemplate
 
 	public override void RefreshCostTextColor()
 	{
-		if (User.Instance.Coins < Material.MoneyCost)
+		if (Player.Instance.Coins < Material.MoneyCost)
 		{
 			costTxt.color = Color.gray;
 			buyButton.interactable = false;

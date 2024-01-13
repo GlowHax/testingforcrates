@@ -1,42 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
-public enum ItemTypes
-{
-	Tool,
-	Consumable,
-	Passive
-}
-
 [System.Serializable]
-public class CraftingMaterial
+public abstract class Item
 {
-	public MaterialSO Material;
-	public int Amount;
-}
+    public virtual string GetName()
+    {
+        return "NoName";
+    }
 
-public class Item : MonoBehaviour
-{
-	public bool Equipped = false;
+    public virtual int MaxStacks()
+    {
+        return 20;
+    }
 
-	[SerializeField] protected string m_name;
-	[SerializeField] protected ItemTypes type;
-	[SerializeField] protected int amountInInventory;
-	[SerializeField] protected List<CraftingMaterial> CraftingRecipe;
-	[SerializeField] protected Animator animator;
-
-	protected Camera playerCam;
-
-	private void Start()
-	{
-		playerCam = transform.parent.parent.GetComponent<Camera>();
-	}
-
-	protected virtual void UseItem()
-	{
-
-	}
+    public virtual Sprite GetItemImage()
+    {
+        return Resources.Load<Sprite>("UI/ItemIcons/CrowBarItemIcon");
+    }
 }

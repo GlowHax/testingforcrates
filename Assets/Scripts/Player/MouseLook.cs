@@ -5,20 +5,16 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
-	public bool LockMovement;
+	[HideInInspector] public bool Active = true;
 
-	[SerializeField] Transform playerBody;
+	[SerializeField] Player player;
+	[SerializeField] Transform cam;
 	[SerializeField] float mouseSensitivity = 1f;
 	float xRotation = 0f;
 
-	void Start()
-	{
-		Cursor.lockState = CursorLockMode.Locked;
-	}
-
 	private void OnApplicationFocus(bool focused)
 	{
-		if (focused && !LockMovement)
+		if (focused && Active)
 		{
 			Cursor.lockState = CursorLockMode.Locked;
 		}
@@ -26,9 +22,9 @@ public class MouseLook : MonoBehaviour
 
 	void Update()
 	{
-		if(!LockMovement)
+		if(Active)
 		{
-			if(Cursor.lockState == CursorLockMode.None)
+			if(Cursor.lockState != CursorLockMode.Locked)
 			{
 				Cursor.lockState = CursorLockMode.Locked;
 			}
@@ -39,10 +35,10 @@ public class MouseLook : MonoBehaviour
 			xRotation -= mouseY;
 			xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-			transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-			playerBody.Rotate(Vector3.up * mouseX);
+			cam.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+			transform.Rotate(Vector3.up * mouseX);
 		}
-		else
+		else if(Cursor.lockState != CursorLockMode.None)
 		{
 			Cursor.lockState = CursorLockMode.None;
 		}

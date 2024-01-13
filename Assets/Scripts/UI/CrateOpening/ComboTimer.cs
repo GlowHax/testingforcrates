@@ -38,7 +38,7 @@ public class ComboTimer : MonoBehaviour
         {
             currrentTime = 0f;
             timerReady = false;
-			User.Instance.ComboBonus = 0;
+			Player.Instance.ComboBonus = 0;
 			transform.parent.gameObject.SetActive(false);
         }
         else if(currrentTime > 0f && timerReady)
@@ -52,7 +52,7 @@ public class ComboTimer : MonoBehaviour
 	public void StartTimer(Color comboColor, float timer)
 	{
 		currrentTime = timer;
-		comboText.text = $"+{Convert.ToInt32(User.Instance.ComboBonus * 100)}% Combo!";
+		comboText.text = $"+{Convert.ToInt32(Player.Instance.ComboBonus * 100)}% Combo!";
 		comboText.color = comboColor;
 		background.color = comboColor;
 		timerReady = true;

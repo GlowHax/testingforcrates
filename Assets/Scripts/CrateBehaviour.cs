@@ -5,12 +5,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public interface IBreakable
+public interface IHittable
 {
-	public void TakeDamage(int amount);
+	public void TakeHit(int damage);
 }
 
-public class CrateBehaviour : MonoBehaviour, IBreakable
+public class CrateBehaviour : MonoBehaviour, IHittable
 {	
 	public string InteractionPromt => throw null;
 
@@ -48,8 +48,11 @@ public class CrateBehaviour : MonoBehaviour, IBreakable
 		StopAllCoroutines();
 	}
 
-	public void TakeDamage(int amount)
+	public void TakeHit(int amount)
     {
+		if (Opened) 
+			return;
+
 		health -= amount;
 		if (health <= 0)
 		{

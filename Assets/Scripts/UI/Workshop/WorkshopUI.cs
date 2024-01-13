@@ -27,8 +27,8 @@ public class WorkshopUI : UIManager
 
 	private void Start()
 	{
-		woodCostText.text = $"{User.Instance.Inventory.Materials[0].AmountInInventory}/5";
-		stoneCostText.text = $"{User.Instance.Inventory.Materials[0].AmountInInventory}/1";
+		woodCostText.text = $"{Player.Instance.OldInventory.Materials[0].AmountInInventory}/5";
+		stoneCostText.text = $"{Player.Instance.OldInventory.Materials[0].AmountInInventory}/1";
 		FillScrapScrollContent();
 	}
 
@@ -63,9 +63,9 @@ public class WorkshopUI : UIManager
 
 	void FillScrapScrollContent()
 	{
-		for (int i = 0; i < User.Instance.Inventory.Scraps.Count; i++)
+		for (int i = 0; i < Player.Instance.OldInventory.Scraps.Count; i++)
 		{
-			ScrapSO scrap = User.Instance.Inventory.Scraps[i];
+			ScrapSO scrap = Player.Instance.OldInventory.Scraps[i];
 			if (scrap.AmountInInventory > 0)
 			{
 				ScrapViewTemplate scrapView = 

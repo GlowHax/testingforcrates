@@ -37,9 +37,9 @@ public class CrateOpeningManager : MonoBehaviour
 	{
 		if (CrateComboQueue[0].CrateType == CrateComboQueue[1].CrateType)
 		{
-			User.Instance.ComboBonus += 0.01f;
+			Player.Instance.ComboBonus += 0.01f;
 			//round to 0.00 to overwrite precision aberration
-			Math.Round((decimal)User.Instance.ComboBonus, 2, MidpointRounding.AwayFromZero);
+			Math.Round((decimal)Player.Instance.ComboBonus, 2, MidpointRounding.AwayFromZero);
 			foreach(ComboTimer timer in comboTimers)
 			{
 				timer.StartTimer(new Color(1f, 0.64f, 0.2f), 5f);

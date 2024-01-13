@@ -113,11 +113,11 @@ public class CrateOpeningTerminal : Terminal
 	{
 		int cratesInTotal = 0;
 
-		for (int i = 0; i < User.Instance.Inventory.Crates.Count; i++)
+		for (int i = 0; i < Player.Instance.OldInventory.Crates.Count; i++)
 		{
-			GameObject cratePrefab = User.Instance.CratePrefabs[i];
+			GameObject cratePrefab = Player.Instance.CratePrefabs[i];
 
-			if (User.Instance.Inventory.Crates[i].AmountInInventory > 0)
+			if (Player.Instance.OldInventory.Crates[i].AmountInInventory > 0)
 			{
 				cratesInTotal++;
 
@@ -127,8 +127,8 @@ public class CrateOpeningTerminal : Terminal
 
 				crateView.CrateOpeningUI = this;
 				crateView.CratePrefab = cratePrefab;
-				crateView.CrateType = User.Instance.Inventory.Crates[i];
-				crateView.Counter.text = User.Instance.Inventory.Crates[i].AmountInInventory.ToString() + "x";
+				crateView.CrateType = Player.Instance.OldInventory.Crates[i];
+				crateView.Counter.text = Player.Instance.OldInventory.Crates[i].AmountInInventory.ToString() + "x";
 
 				crateView.Setup();
 			}
@@ -142,7 +142,7 @@ public class CrateOpeningTerminal : Terminal
 
 	public void StartCrateOpening()
 	{
-		User.Instance.ComboBonus = 0f;
+		Player.Instance.ComboBonus = 0f;
 
 		SetInteractable(false);
 		mainPanel.SetActive(false);
