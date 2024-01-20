@@ -9,7 +9,6 @@ public class OldInventory
 	public List<CrateSO> Crates = new List<CrateSO>();
 	public List<MaterialSO> Materials = new List<MaterialSO>();
 	public List<ScrapSO> Scraps = new List<ScrapSO>();
-	public List<Tool> Items = new List<Tool>();
 }
 
 public class Player : MonoBehaviour
@@ -30,7 +29,7 @@ public class Player : MonoBehaviour
 
 	public float ComboBonus = 0f;
 
-	[SerializeField] private Item equippedItem;
+	[HideInInspector] public Tool equippedTool;
 
 	#region level reward vars
 	public int[] XPToNextLvl = { 50, 100, 200, 500, 750, 1000, 1500, 2000, 3000 };
@@ -57,15 +56,9 @@ public class Player : MonoBehaviour
 
 	private void Update()
 	{
-		ManageEquippedItem();
-
-		if (equippedItem != null && Input.GetMouseButtonDown(0))
+		if(Input.GetKeyDown(KeyCode.Q))
 		{
-			if (equippedItem.GetType() == typeof(Tool))
-			{
-				Tool equippedTool = equippedItem as Tool;
-				equippedTool.Use();
-			}
+			SelectEquippedTool(!equippedTool.Prefab.activeSelf);
 		}
 	}
 
@@ -79,25 +72,9 @@ public class Player : MonoBehaviour
 		Player.Instance.mouseLook.Active = value;
 	}
 
-	private void ManageEquippedItem()
+	private void SelectEquippedTool(bool select)
 	{
-		if (Input.GetKeyDown(KeyCode.Q))
-		{
-			if (equippedItem == null)
-			{
-				//equip the crowbar
-				equippedItem = OldInventory.Items[0];
-				//equippedItem.Equipped = true;
-				//equippedItem.gameObject.SetActive(true);
-			}
-			else
-			{
-				//unequip crowbar
-				//equippedItem.Equipped = false;
-				//equippedItem.gameObject.SetActive(false);
-				equippedItem = null;
-			}
-		}
+		equippedTool.Prefab.SetActive(select);
 	}
 
 	public void AddXPToUser(int amount)

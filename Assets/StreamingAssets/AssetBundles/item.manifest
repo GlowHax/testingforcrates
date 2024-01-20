@@ -1,0 +1,25 @@
+ManifestFileVersion: 0
+CRC: 2824576517
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 37aa58cac759dd377a40e45971c44d55
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: abd8f5035b9819d1dd7aedc2688e3f0f
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: 9c171b5eb880733408c06cc44a9ea852, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b4880a43bc5f66f478bad7c70dfa822f, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Scripts/SO/Items/Material/Stone.asset
+- Assets/Scripts/SO/Items/Tool/Crowbar.asset
+- Assets/Scripts/SO/Items/Material/Wood.asset
+- Assets/Scripts/SO/Items/Material/Iron.asset
+- Assets/Scripts/SO/Items/Material/Copper.asset
+Dependencies: []

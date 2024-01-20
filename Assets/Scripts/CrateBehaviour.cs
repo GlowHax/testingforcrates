@@ -14,7 +14,7 @@ public class CrateBehaviour : MonoBehaviour, IHittable
 {	
 	public string InteractionPromt => throw null;
 
-	public CrateSO CrateType;
+	public CrateSO Crate;
 	public Sprite CrateSprite;
 
 	[HideInInspector] public bool Opened = false;
@@ -28,20 +28,17 @@ public class CrateBehaviour : MonoBehaviour, IHittable
 	[SerializeField] GameObject brokenModel;
 	[SerializeField] GameObject lootText;
 
+	[SerializeField] GameObject droppedItemObject;
+
 	private float maxHealth;
 	private float health;
-	
 
     private void Start()
     {
-		maxHealth = CrateType.Health;
+		maxHealth = Crate.Health;
 		health = maxHealth;
-    }
-
-    private void Update()
-    {
-		ManageHealthBar();
-    }
+		UpdateHealthBar();
+	}
 
     private void OnDestroy()
 	{
@@ -54,6 +51,8 @@ public class CrateBehaviour : MonoBehaviour, IHittable
 			return;
 
 		health -= amount;
+		UpdateHealthBar();
+
 		if (health <= 0)
 		{
 			health = 0;
@@ -61,7 +60,7 @@ public class CrateBehaviour : MonoBehaviour, IHittable
 		}
 	}
 
-    private void ManageHealthBar()
+    private void UpdateHealthBar()
     {
 		healthText1.text = $"{(health / maxHealth) * 100}%";
 		healthText2.text = $"{(health / maxHealth) * 100}%";
@@ -81,10 +80,33 @@ public class CrateBehaviour : MonoBehaviour, IHittable
 	public void Break()
 	{
 		CrateOpeningManager.CrateComboQueue.Add(this);
-
-		CrateType.OpenCrate();
 		Destroy(transform.GetComponent<Collider>());
 		Destroy(transform.GetComponent<Rigidbody>());
+
+		Crate.OpenCrate();
+		if (Crate.ScrapDropName != "None" || Crate.ScrapDropName != "")
+		{
+			//find scrap to drop
+			Item scrap = null;
+			Player.Instance.Inventory.AllItemsDictionary.TryGetValue(Crate.ScrapDropName, out scrap);
+			//exit if no scrap was found
+			if (scrap == null)
+			{
+				Debug.Log($"Could not find Scrap '{Crate.ScrapDropName}' in Dictionary to Drop");
+				return;
+			}
+
+			GameObject droppedSrap = Instantiate(droppedItemObject, transform.position, Quaternion.identity);
+
+			ItemPickup itemPickup = droppedSrap.GetComponentInChildren<ItemPickup>();
+			if(itemPickup != null)
+			{
+				itemPickup.itemToDrop = Crate.ScrapDropName;
+				itemPickup.amount = Crate.ScrapDropAmount;
+				
+			}
+		}
+
 		StartCoroutine(OpeningSequence());
 	}
 
@@ -117,14 +139,14 @@ public class CrateBehaviour : MonoBehaviour, IHittable
 		}
 
 		yield return new WaitForSeconds(.5f);
-		ShowFloatingLootText($"+{CrateType.MoneyDrop} Coins", Color.yellow);
+		ShowFloatingLootText($"+{Crate.MoneyDrop} Coins", Color.yellow);
 		yield return new WaitForSeconds(.2f);
-		ShowFloatingLootText($"+{CrateType.XPDrop} XP", Color.white);
+		ShowFloatingLootText($"+{Crate.XPDrop} XP", Color.white);
 
-		if (CrateType.ScrapDropName != "")
+		if (Crate.ScrapDropName != "")
 		{
 			yield return new WaitForSeconds(.2f);
-			ShowFloatingLootText($"+{CrateType.ScrapDropAmount}x {CrateType.ScrapDropName}", Color.green);
+			ShowFloatingLootText($"+{Crate.ScrapDropAmount}x {Crate.ScrapDropName}", Color.green);
 		}
 		yield return new WaitForSeconds(2f);
 

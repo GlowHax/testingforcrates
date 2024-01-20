@@ -7,6 +7,21 @@ public enum CrateType
 	Main, Material, Daily
 }
 
+[System.Serializable]
+public class ScrapDrop
+{
+	public string ScrapName;
+	public int Amount;
+	public float Probability;
+}
+
+[System.Serializable]
+public class MaterialCost
+{
+	public MaterialSO Material;
+	public int Amount;
+}
+
 [CreateAssetMenu(fileName = "New Crate", menuName = "Crate")]
 public class CrateSO : ScriptableObject
 {
@@ -133,16 +148,6 @@ public class CrateSO : ScriptableObject
 		AmountInInventory--;
 		Player.Instance.Coins += MoneyDrop;
 		Player.Instance.AddXPToUser(XPDrop);
-		if (ScrapDropName != "")
-		{
-			for (int i = 0; i < Player.Instance.OldInventory.Materials.Count; i++)
-			{
-				if (Player.Instance.OldInventory.Materials[i].Name == ScrapDropName)
-				{
-					Player.Instance.OldInventory.Materials[i].AmountInInventory += ScrapDropAmount;
-				}
-			}
-		}
 	}
 
 	private void CalcutlateDrops()
@@ -179,7 +184,7 @@ public class CrateSO : ScriptableObject
 
 			for (int i = 0; i < scrapDrops.Length; i++)
 			{
-				if(scrapDrops[i].Scrap == null)
+				if(scrapDrops[i].ScrapName == null)
 				{
 					scrapSelections[i] =
 					new RandomScrapSelection(
@@ -192,7 +197,7 @@ public class CrateSO : ScriptableObject
 				{
 					scrapSelections[i] =
 					new RandomScrapSelection(
-					scrapDrops[i].Scrap.Name,
+					scrapDrops[i].ScrapName,
 					scrapDrops[i].Amount,
 					scrapDrops[i].Probability
 					);
@@ -204,19 +209,4 @@ public class CrateSO : ScriptableObject
 			ScrapDropAmount = int.Parse(materialDrop[1]);
 		}
 	}
-}
-
-[System.Serializable]
-public class ScrapDrop
-{
-	public ScrapSO Scrap;
-	public int Amount;
-	public float Probability;
-}
-
-[System.Serializable]
-public class MaterialCost
-{
-	public  MaterialSO Material;
-	public int Amount;
 }

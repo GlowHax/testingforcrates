@@ -6,53 +6,60 @@ using TMPro;
 
 public class Mouse : MonoBehaviour
 {
-    public GameObject MouseItemUI;
-    public Image MouseCursor;
     public ItemSlotInfo ItemSlot;
     public Image ItemImage;
     public TextMeshProUGUI StacksText;
-	public ItemPanel SourceItemPanel;
-	public int SplitSize;
+    public Image DurabilityBarImage;
 
 	void Update()
     {
-        transform.position = Input.mousePosition;
-
-        if(ItemSlot.Item != null)
-        {
-            MouseItemUI.SetActive(true);
-        }
-        else
-        {
-            MouseItemUI.SetActive(false);
-        }       
+        transform.position = Input.mousePosition;      
 	}
 
     public void SetUI()
     {
-		StacksText.gameObject.SetActive(true);
-		SourceItemPanel.StacksText.gameObject.SetActive(true);
-
-		if (SplitSize == 1)
-        {
+        if (ItemSlot.Item == null)
+		{
+			ItemImage.gameObject.SetActive(false);
 			StacksText.gameObject.SetActive(false);
-			SourceItemPanel.StacksText.gameObject.SetActive(false);
-		}
-        else if(SplitSize == 2 || SplitSize == SourceItemPanel.ItemSlot.Stacks)
-        {
-			SourceItemPanel.StacksText.gameObject.SetActive(false);
+			DurabilityBarImage.transform.parent.gameObject.SetActive(false);
 		}
         else
         {
-			SourceItemPanel.StacksText.text = (ItemSlot.Stacks - SplitSize).ToString();
-		}
+			ItemImage.gameObject.SetActive(true);
+			if (ItemSlot.Stacks > 1)
+			{
+				StacksText.gameObject.SetActive(true);
+			}
+			ItemImage.sprite = ItemSlot.Item.Sprite;
+			StacksText.text = ItemSlot.Stacks.ToString();
 
-		ItemImage.sprite = ItemSlot.Item.GetItemImage();
-		StacksText.text = SplitSize.ToString();
+			if (ItemSlot.Item is Tool)
+			{
+				DurabilityBarImage.transform.parent.gameObject.SetActive(true);
+				DurabilityBarImage.fillAmount = ((Tool)ItemSlot.Item).Durability;
+			}
+			else
+			{
+				DurabilityBarImage.transform.parent.gameObject.SetActive(false);
+				if (ItemSlot.Stacks > 1)
+				{
+					StacksText.gameObject.SetActive(true);
+				}
+			}
+		}
 	}
 
     public void EmptySlot()
     {
-        ItemSlot = new ItemSlotInfo(null, 0);
-    }
+		if (ItemSlot.Item != null)
+		{
+			int amountToDrop = Player.Instance.Inventory.AddItem(ItemSlot.Item.Name, ItemSlot.Stacks);
+			if(amountToDrop > 0)
+			{
+				Player.Instance.Inventory.DropItem(ItemSlot.Item, amountToDrop);
+			}
+		}
+		Player.Instance.Inventory.ClearSlot(ItemSlot);
+	}
 }

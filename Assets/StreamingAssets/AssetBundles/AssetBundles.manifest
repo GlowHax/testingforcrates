@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 296001339
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: itemstats
+      Dependencies: {}
+    Info_1:
+      Name: itemsprite
+      Dependencies: {}
+    Info_2:
+      Name: item
+      Dependencies: {}
+    Info_3:
+      Name: itemprefab
+      Dependencies: {}

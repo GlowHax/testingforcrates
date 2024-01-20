@@ -5,14 +5,24 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
+public enum ItemPanelType
+{
+    Inventory,
+    ToolEquip,
+    PassiveEquip
+}
+
 public class ItemPanel : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler, IPointerUpHandler
 {
-    public Inventory Inventory;
+    [HideInInspector] public Inventory Inventory;
     public ItemSlotInfo ItemSlot;
     public Image ItemImage;
     public TextMeshProUGUI StacksText;
+    public Image DurabilityBarImage;
 
-    private Mouse mouse;
+	public ItemPanelType PanelType = ItemPanelType.Inventory;
+
+	private Mouse mouse;
     private bool click;
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -34,84 +44,103 @@ public class ItemPanel : MonoBehaviour, IPointerEnterHandler, IPointerDownHandle
         }
 	}
 
-	public void PickupItem()
+	public void PickupItem(bool halfSplit)
     {
-        mouse.ItemSlot = ItemSlot;
-        mouse.SourceItemPanel = this;
-        if(Input.GetMouseButtonUp(1) && ItemSlot.Stacks > 1) 
-        {
-            if(ItemSlot.Stacks % 2 == 0)
-            {
-				mouse.SplitSize = (ItemSlot.Stacks / 2);
+		mouse.ItemSlot.Item = ItemSlot.Item;
+		mouse.ItemImage.sprite = ItemSlot.Item.Sprite;
+
+		if(PanelType == ItemPanelType.Inventory)
+		{
+			if (halfSplit)
+			{
+				if (ItemSlot.Stacks % 2 == 0)
+				{
+					mouse.ItemSlot.Stacks = (ItemSlot.Stacks / 2);
+				}
+				else
+				{
+					mouse.ItemSlot.Stacks = (ItemSlot.Stacks / 2) + 1;
+				}
+				ItemSlot.Stacks -= mouse.ItemSlot.Stacks;
 			}
-            else
-            {
-				mouse.SplitSize = (ItemSlot.Stacks / 2) + 1;
+			else
+			{
+				mouse.ItemSlot.Stacks = ItemSlot.Stacks;
+				Inventory.ClearSlot(ItemSlot);
 			}
 		}
-        else
-        {
-            mouse.SplitSize = ItemSlot.Stacks;
-        }
-        mouse.SetUI();
     }
 
-    public void DropItem()
+    public void DropItem(bool singleItemDrop)
     {
-        ItemSlot.Item = mouse.ItemSlot.Item;
-        if(mouse.SplitSize < mouse.ItemSlot.Stacks)
+		ItemSlot.Item = mouse.ItemSlot.Item;
+
+		if (PanelType == ItemPanelType.Inventory)
         {
-            ItemSlot.Stacks = mouse.SplitSize;
-            mouse.ItemSlot.Stacks -= mouse.SplitSize;
-            mouse.EmptySlot();
-        }
-        else
-        {
-			ItemSlot.Stacks = mouse.ItemSlot.Stacks;
+			ItemSlot.Item = mouse.ItemSlot.Item;
+			ItemImage.sprite = ItemSlot.Item.Sprite;
+
+			if (singleItemDrop && mouse.ItemSlot.Stacks > 1)
+			{
+				ItemSlot.Stacks = 1;
+				mouse.ItemSlot.Stacks--;
+			}
+			else
+			{
+				ItemSlot.Stacks = mouse.ItemSlot.Stacks;
+				Inventory.ClearSlot(mouse.ItemSlot);
+			}
+		}
+		else if(PanelType == ItemPanelType.ToolEquip && mouse.ItemSlot.Item is Tool)
+		{
+			Inventory.EquipTool(ItemSlot.Item as Tool);
 			Inventory.ClearSlot(mouse.ItemSlot);
 		}
 	}
 
 	public void SwapItem(ItemSlotInfo slotA, ItemSlotInfo slotB)
 	{
-        ItemSlotInfo tempItem = new ItemSlotInfo(slotA.Item, slotA.Stacks);
+		ItemSlotInfo tempItem = new ItemSlotInfo(slotA.Item, slotA.Stacks);
 
-        slotA.Item = slotB.Item;
+		slotA.Item = slotB.Item;
         slotA.Stacks = slotB.Stacks;
 
         slotB.Item = tempItem.Item;
         slotB.Stacks = tempItem.Stacks;
 	}
 
-    public void StackItem(ItemSlotInfo source, ItemSlotInfo destination, int amount)
+    public void StackItem(bool singleItemStack)
     {
-        int slotsAvailable = destination.Item.MaxStacks() - destination.Stacks;
-        if (slotsAvailable == 0)
+        int slotsAvailable = ItemSlot.Item.MaxInventoryStacks - ItemSlot.Stacks;
+        if (slotsAvailable <= 0)
             return;
 
-        if(amount > slotsAvailable)
+        if (singleItemStack)
         {
-            source.Stacks -= slotsAvailable;
-            destination.Stacks = destination.Item.MaxStacks();
-        }
-        if(amount <= slotsAvailable)
+			ItemSlot.Stacks++;
+			if (mouse.ItemSlot.Stacks == 1)
+			{
+				Inventory.ClearSlot(mouse.ItemSlot);
+			}
+			else
+			{
+				mouse.ItemSlot.Stacks--;
+			}
+		}
+		else
         {
-            destination.Stacks += amount;
-            if(source.Stacks == amount)
-            {
-                Inventory.ClearSlot(source);
-            }
-            else
-            {
-                source.Stacks -= amount;
-            }
-        }
-    }
-
-	public void FadeOut()
-    {
-        ItemImage.CrossFadeAlpha(0.3f, 0.05f, true);
-    }
+			if (mouse.ItemSlot.Stacks > slotsAvailable)
+			{
+				mouse.ItemSlot.Stacks -= slotsAvailable;
+				ItemSlot.Stacks = ItemSlot.Item.MaxInventoryStacks;
+			}
+			else
+			{
+				ItemSlot.Stacks += mouse.ItemSlot.Stacks;
+				Inventory.ClearSlot(mouse.ItemSlot);
+			}
+		}
+	}
 
     public void OnClick()
     {
@@ -124,36 +153,29 @@ public class ItemPanel : MonoBehaviour, IPointerEnterHandler, IPointerDownHandle
             {
                 if(ItemSlot.Item != null)
                 {
-                    PickupItem();
-                    FadeOut();
+                    PickupItem(Input.GetMouseButtonUp(1));
                 }
             }
             else
             {
-                //clicked on original slot
-                if(ItemSlot == mouse.ItemSlot)
+				//clicked on original slot or empty slot
+				if (ItemSlot == mouse.ItemSlot || ItemSlot.Item == null)
                 {
-                    Inventory.RefreshInventory();
-                }
-				//clicked on empty slot
-				else if (ItemSlot.Item == null)
-                {
-                    DropItem();
-                    Inventory.RefreshInventory();
-                }
+					DropItem(Input.GetMouseButtonUp(1));
+				}
                 //clicked on occupied slot of different item type
-                else if (ItemSlot.Item.GetName() != mouse.ItemSlot.Item.GetName())
+                else if (ItemSlot.Item.Name != mouse.ItemSlot.Item.Name)
                 {
                     SwapItem(ItemSlot, mouse.ItemSlot);
-					Inventory.RefreshInventory();
 				}
 				//clicked on occupied slot of same item type
-                else if(ItemSlot.Stacks < ItemSlot.Item.MaxStacks())
+                else if(ItemSlot.Stacks < ItemSlot.Item.MaxInventoryStacks)
                 {
-                    StackItem(mouse.ItemSlot, ItemSlot, mouse.SplitSize);
-                    Inventory.RefreshInventory();
-                }
+					StackItem(Input.GetMouseButtonUp(1));
+				}
 			}
+
+			Inventory.RefreshInventory();
 		}
-    }
+	}
 }

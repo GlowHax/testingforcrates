@@ -187,17 +187,17 @@ public class CrateOpeningTerminal : Terminal
 		//totalMoneyDrop += crate.GetComponent<CrateBehaviour>().CrateType.MoneyDrop;
 		//totalXPDrop += crate.GetComponent<CrateBehaviour>().CrateType.XPDrop;
 
-		if (crate.GetComponent<CrateBehaviour>().CrateType.ScrapDropName != "NoMaterial")
+		if (crate.GetComponent<CrateBehaviour>().Crate.ScrapDropName != "NoMaterial")
 		{
-			if (totalMaterialDropNames.Contains(crate.GetComponent<CrateBehaviour>().CrateType.ScrapDropName))
+			if (totalMaterialDropNames.Contains(crate.GetComponent<CrateBehaviour>().Crate.ScrapDropName))
 			{
-				int materialIndex = totalMaterialDropNames.IndexOf(crate.GetComponent<CrateBehaviour>().CrateType.ScrapDropName);
-				totalMaterialDropAmounts[materialIndex] += crate.GetComponent<CrateBehaviour>().CrateType.ScrapDropAmount;
+				int materialIndex = totalMaterialDropNames.IndexOf(crate.GetComponent<CrateBehaviour>().Crate.ScrapDropName);
+				totalMaterialDropAmounts[materialIndex] += crate.GetComponent<CrateBehaviour>().Crate.ScrapDropAmount;
 			}
 			else
 			{
-				totalMaterialDropNames.Add(crate.GetComponent<CrateBehaviour>().CrateType.ScrapDropName);
-				totalMaterialDropAmounts.Add(crate.GetComponent<CrateBehaviour>().CrateType.ScrapDropAmount);
+				totalMaterialDropNames.Add(crate.GetComponent<CrateBehaviour>().Crate.ScrapDropName);
+				totalMaterialDropAmounts.Add(crate.GetComponent<CrateBehaviour>().Crate.ScrapDropAmount);
 			}
 		}
 	}

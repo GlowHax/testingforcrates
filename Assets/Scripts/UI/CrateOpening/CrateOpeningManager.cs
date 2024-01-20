@@ -35,7 +35,7 @@ public class CrateOpeningManager : MonoBehaviour
 
 	private void CheckSimpleCombo()
 	{
-		if (CrateComboQueue[0].CrateType == CrateComboQueue[1].CrateType)
+		if (CrateComboQueue[0].Crate == CrateComboQueue[1].Crate)
 		{
 			Player.Instance.ComboBonus += 0.01f;
 			//round to 0.00 to overwrite precision aberration

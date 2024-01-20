@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8038785746748712304}
   - component: {fileID: 5141050666672462906}
   - component: {fileID: 8538002969125140654}
-  m_Layer: 0
-  m_Name: default
+  m_Layer: 13
+  m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,6 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7493907562105082920}
   - component: {fileID: 6950475087637349112}
+  - component: {fileID: -5880747086124776418}
   m_Layer: 13
   m_Name: Crowbar
   m_TagString: Untagged
@@ -106,14 +107,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7832997345486917266}
-  m_LocalRotation: {x: 0.18036017, y: -0, z: -0, w: 0.9836007}
+  m_LocalRotation: {x: 0.18843089, y: -0.21848346, z: -0.042255282, w: 0.9565424}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 8038785746748712304}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 20.781, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 20, y: -27.5, z: -10}
 --- !u!95 &6950475087637349112
 Animator:
   serializedVersion: 3
@@ -133,3 +134,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-5880747086124776418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7832997345486917266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c94491ad661266940843c71c9dc05fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 6950475087637349112}

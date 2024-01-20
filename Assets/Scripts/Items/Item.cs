@@ -1,20 +1,36 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [System.Serializable]
-public abstract class Item
+public abstract class Item : ScriptableObject
 {
-    public virtual string GetName()
+	[Header("Stats")]
+	public string Name;
+	public int MaxInventoryStacks;
+
+	[HideInInspector] public Sprite Sprite;
+    public virtual void LoadData(List<AssetBundle> assetBundles)
     {
-        return "NoName";
+		Sprite = LoadSprite(Name + "ItemSprite", assetBundles[0]);
     }
 
-    public virtual int MaxStacks()
-    {
-        return 20;
-    }
+	public GameObject LoadObject(string objectNameToLoad, AssetBundle assetBundle)
+	{
+		//Load Asset
+		AssetBundleRequest assetRequest = assetBundle.LoadAssetAsync<GameObject>(objectNameToLoad);
+		GameObject loadedObject = assetRequest.asset as GameObject;
+		Debug.Log(loadedObject.name + "Prefab loaded");
+		return loadedObject;
+	}
 
-    public virtual Sprite GetItemImage()
-    {
-        return Resources.Load<Sprite>("UI/ItemIcons/CrowBarItemIcon");
-    }
+	public Sprite LoadSprite(string spriteNameToLoad, AssetBundle assetBundle)
+	{
+		//Load Asset
+		AssetBundleRequest assetRequest = assetBundle.LoadAssetAsync<Sprite>(spriteNameToLoad);
+		Sprite loadedSprite = assetRequest.asset as Sprite;
+		Debug.Log(loadedSprite.name + " loaded");
+		return loadedSprite;
+	}
 }
