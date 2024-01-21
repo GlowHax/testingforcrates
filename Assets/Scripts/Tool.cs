@@ -6,10 +6,10 @@ using UnityEngine;
 [System.Serializable]
 public class Tool : Item
 {
+	public int Power;
 	public int Durability;
 	[HideInInspector] public int MaxDurability;
 	public int MaxUseDistance;
-	public int Power;
 
 	[HideInInspector] public GameObject Prefab;
 

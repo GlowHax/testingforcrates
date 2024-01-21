@@ -9,6 +9,8 @@ public abstract class Item : ScriptableObject
 	[Header("Stats")]
 	public string Name;
 	public int MaxInventoryStacks;
+	[Multiline(10)]
+	public string Description;
 
 	[HideInInspector] public Sprite Sprite;
     public virtual void LoadData(List<AssetBundle> assetBundles)

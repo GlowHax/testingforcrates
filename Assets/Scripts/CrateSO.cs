@@ -22,7 +22,8 @@ public class MaterialCost
 	public int Amount;
 }
 
-[CreateAssetMenu(fileName = "New Crate", menuName = "Crate")]
+[CreateAssetMenu(fileName = "New Crate", menuName = "Inventory System/Item/Crate")]
+[System.Serializable]
 public class CrateSO : ScriptableObject
 {
 	public string Name;

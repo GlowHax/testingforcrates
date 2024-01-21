@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 126098237
+CRC: 4158856488
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 40f1a887fac604983f892a19ca01ca15
+    Hash: fcca447dc5a22dde365e4120334ec87c
   TypeTreeHash:
     serializedVersion: 2
     Hash: c21d61fe394c58399df3c6fb5c7c99b3
@@ -15,11 +15,16 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/Images/Icons/Materials/IronItemSprite.png
-- Assets/Images/Icons/Materials/StoneItemSprite.png
+- Assets/Images/Items/Scrap/Broken LightbulbItemSprite.png
+- Assets/Images/Items/Scrap/Old BootItemSprite.png
+- Assets/Images/Items/Materials/IronItemSprite.png
+- Assets/Images/Items/Scrap/CablesItemSprite.png
+- Assets/Images/Items/Materials/StoneItemSprite.png
+- Assets/Images/Items/Scrap/Bent ForkItemSprite.png
+- Assets/Images/Items/Materials/WoodItemSprite.png
 - Assets/Images/Items/NoNameItemSprite.png
-- Assets/Images/Items/CrowbarItemSprite.png
-- Assets/Images/Icons/Materials/CopperItemSprite.png
-- Assets/Images/Icons/Materials/WoodItemSprite.png
-- Assets/Images/Icons/Materials/SandItemSprite.png
+- Assets/Images/Items/Tools/CrowbarItemSprite.png
+- Assets/Images/Items/Materials/CopperItemSprite.png
+- Assets/Images/Items/Scrap/Clothes HangerItemSprite.png
+- Assets/Images/Items/Materials/SandItemSprite.png
 Dependencies: []
