@@ -49,26 +49,23 @@ public class ItemPanel : MonoBehaviour, IPointerEnterHandler, IPointerDownHandle
 		mouse.ItemSlot.Item = ItemSlot.Item;
 		mouse.ItemImage.sprite = ItemSlot.Item.Sprite;
 
-		if(PanelType == ItemPanelType.Inventory)
-		{
-			if (halfSplit)
-			{
-				if (ItemSlot.Stacks % 2 == 0)
-				{
-					mouse.ItemSlot.Stacks = (ItemSlot.Stacks / 2);
-				}
-				else
-				{
-					mouse.ItemSlot.Stacks = (ItemSlot.Stacks / 2) + 1;
-				}
-				ItemSlot.Stacks -= mouse.ItemSlot.Stacks;
-			}
-			else
-			{
-				mouse.ItemSlot.Stacks = ItemSlot.Stacks;
-				Inventory.ClearSlot(ItemSlot);
-			}
-		}
+        if (PanelType == ItemPanelType.Inventory && halfSplit)
+        {
+            if (ItemSlot.Stacks % 2 == 0)
+            {
+                mouse.ItemSlot.Stacks = (ItemSlot.Stacks / 2);
+            }
+            else
+            {
+                mouse.ItemSlot.Stacks = (ItemSlot.Stacks / 2) + 1;
+            }
+            ItemSlot.Stacks -= mouse.ItemSlot.Stacks;
+        }
+        else
+        {
+            mouse.ItemSlot.Stacks = ItemSlot.Stacks;
+            Inventory.ClearSlot(ItemSlot);
+        }
     }
 
     public void DropItem(bool singleItemDrop)

@@ -7,17 +7,17 @@ using UnityEngine;
 public class Tool : Item
 {
 	public int Power;
-	public int Durability;
-	[HideInInspector] public int MaxDurability;
+	public float Durability;
+	[HideInInspector] public float MaxDurability;
 	public int MaxUseDistance;
 
 	[HideInInspector] public GameObject Prefab;
 
-	public override void LoadData(List<AssetBundle> assetBundles)
+	public override void LoadData(AssetBundle assetBundle)
 	{
-		base.LoadData(assetBundles);
+		base.LoadData(assetBundle);
 
-		Prefab = LoadObject(Name, assetBundles[1]);
+		Prefab = LoadObject(Name, assetBundle);
 		MaxDurability = Durability;
 	}
 }

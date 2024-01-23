@@ -10,19 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4aede24f824ef2242aba3603cca9c0ee, type: 3}
-  m_Name: CommonCrate
+  m_Name: UncommonCrate
   m_EditorClassIdentifier: 
-  Name: Common Crate
-  UnlockLvl: 0
-  MoneyCost: 500
+  Name: Uncommon Crate
+  MaxInventoryStacks: 10
+  Description: 
+  Sprite: {fileID: 0}
+  UnlockLvl: 4
+  MoneyCost: 1000
   Type: 0
   MaterialCosts: []
-  Health: 10
-  AmountInInventory: 996
-  Stats: 'Coins: 100-2000
+  Health: 25
+  MaxHealth: 0
+  Stats: 'Coins: 400-10000
 
 
-    XP: 10-30
+    XP: 20-100
 
 
     Materials:
@@ -30,33 +33,37 @@ MonoBehaviour:
     Wood
 
     Stone'
-  MoneyDrop: 400
-  XPDrop: 30
+  Prefab: {fileID: 0}
+  MoneyDrop: 1000
+  XPDrop: 20
   ScrapDropName: 
   ScrapDropAmount: 0
-  moneyDrops: 64000000fa00000090010000ee020000e8030000d0070000
+  moneyDrops: 90010000ee020000e8030000b0040000dc050000d00700008813000010270000
   moneyDropOdds:
-  - 0.145
+  - 0.2
+  - 0.3
+  - 0.3
+  - 0.1
+  - 0.05
+  - 0.04
+  - 0.008
+  - 0.002
+  xpDrops: 140000001e0000003200000064000000
+  xpDropOdds:
   - 0.3
   - 0.5
+  - 0.16
   - 0.04
-  - 0.01
-  - 0.005
-  xpDrops: 0a000000140000001e000000
-  xpDropOdds:
-  - 0.35
-  - 0.5
-  - 0.15
   scrapDrops:
-  - ScrapName: None
+  - ScrapName: 
     Amount: 0
     Probability: 0.6
-  - ScrapName: Clothes Hanger
-    Amount: 1
-    Probability: 0.22
   - ScrapName: Bent Fork
-    Amount: 1
+    Amount: 0
+    Probability: 0.2
+  - ScrapName: Clothes Hanger
+    Amount: 0
     Probability: 0.1
   - ScrapName: Cables
-    Amount: 1
-    Probability: 0.08
+    Amount: 0
+    Probability: 0.1

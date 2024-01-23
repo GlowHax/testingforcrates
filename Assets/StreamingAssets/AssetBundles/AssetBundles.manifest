@@ -1,16 +1,10 @@
 ManifestFileVersion: 0
-CRC: 673821022
+CRC: 479556197
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: itemsprite
-      Dependencies: {}
-    Info_1:
       Name: itemstats
       Dependencies: {}
-    Info_2:
+    Info_1:
       Name: item
-      Dependencies: {}
-    Info_3:
-      Name: itemprefab
       Dependencies: {}

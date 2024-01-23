@@ -57,7 +57,7 @@ public class Mouse : MonoBehaviour
 			int amountToDrop = Player.Instance.Inventory.AddItem(ItemSlot.Item.Name, ItemSlot.Stacks);
 			if(amountToDrop > 0)
 			{
-				Player.Instance.Inventory.DropItem(ItemSlot.Item, amountToDrop);
+				Player.Instance.Inventory.DropItem(ItemSlot.Item.Name, amountToDrop);
 			}
 		}
 		Player.Instance.Inventory.ClearSlot(ItemSlot);

@@ -19,8 +19,8 @@ MonoBehaviour:
     keeping up combos in a
     crate-opening.'
   Sprite: {fileID: 0}
+  Power: 4
   Durability: 12
   MaxDurability: 0
   MaxUseDistance: 3
-  Power: 4
   Prefab: {fileID: 0}

@@ -45,30 +45,37 @@ public class CrateBehaviour : MonoBehaviour, IHittable
 		StopAllCoroutines();
 	}
 
-	public void TakeHit(int amount)
+    private void Update()
+    {
+		UpdateHealthBar();
+    }
+
+    public void TakeHit(int amount)
     {
 		if (Opened) 
 			return;
 
 		health -= amount;
-		UpdateHealthBar();
-
 		if (health <= 0)
 		{
 			health = 0;
 			Break();
 		}
-	}
+    }
 
     private void UpdateHealthBar()
     {
-		healthText1.text = $"{(health / maxHealth) * 100}%";
-		healthText2.text = $"{(health / maxHealth) * 100}%";
+		float remainingHealth = health / maxHealth;
+
+        healthText1.text = $"{remainingHealth * 100}%";
+		healthText2.text = $"{remainingHealth * 100}%";
 
 		healthBar1.fillAmount = 
-			Mathf.Lerp(healthBar1.fillAmount, health / maxHealth, 4f * Time.deltaTime);
+			Mathf.Lerp(healthBar1.fillAmount, remainingHealth, 
+			4 * Time.deltaTime);
 		healthBar2.fillAmount = 
-			Mathf.Lerp(healthBar2.fillAmount, health / maxHealth, 4f * Time.deltaTime);
+			Mathf.Lerp(healthBar2.fillAmount, remainingHealth,
+            4 * Time.deltaTime);
 
 		Color healthColor = 
 			Color.Lerp(Color.red, Color.green, (health / maxHealth));

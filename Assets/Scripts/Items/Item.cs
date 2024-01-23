@@ -13,9 +13,9 @@ public abstract class Item : ScriptableObject
 	public string Description;
 
 	[HideInInspector] public Sprite Sprite;
-    public virtual void LoadData(List<AssetBundle> assetBundles)
+    public virtual void LoadData(AssetBundle assetBundle)
     {
-		Sprite = LoadSprite(Name + "ItemSprite", assetBundles[0]);
+		Sprite = LoadSprite(assetBundle);
     }
 
 	public GameObject LoadObject(string objectNameToLoad, AssetBundle assetBundle)
@@ -23,16 +23,15 @@ public abstract class Item : ScriptableObject
 		//Load Asset
 		AssetBundleRequest assetRequest = assetBundle.LoadAssetAsync<GameObject>(objectNameToLoad);
 		GameObject loadedObject = assetRequest.asset as GameObject;
-		Debug.Log(loadedObject.name + "Prefab loaded");
 		return loadedObject;
 	}
 
-	public Sprite LoadSprite(string spriteNameToLoad, AssetBundle assetBundle)
+	public Sprite LoadSprite(AssetBundle assetBundle)
 	{
 		//Load Asset
-		AssetBundleRequest assetRequest = assetBundle.LoadAssetAsync<Sprite>(spriteNameToLoad);
+		AssetBundleRequest assetRequest = assetBundle.
+			LoadAssetAsync<Sprite>(Name + "ItemSprite");
 		Sprite loadedSprite = assetRequest.asset as Sprite;
-		Debug.Log(loadedSprite.name + " loaded");
 		return loadedSprite;
 	}
 }

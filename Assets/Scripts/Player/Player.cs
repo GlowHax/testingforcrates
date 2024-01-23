@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
 		equippedTool.Prefab.SetActive(select);
 	}
 
-	public void AddXPToUser(int amount)
+	public void AddXPToPlayer(int amount)
 	{
 		XP += amount;
 		//Quests.XPQuestCounter += amount;

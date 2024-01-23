@@ -8,7 +8,7 @@ public enum CrateType
 }
 
 [System.Serializable]
-public class ScrapDrop
+public struct ScrapDrop
 {
 	public string ScrapName;
 	public int Amount;
@@ -16,7 +16,7 @@ public class ScrapDrop
 }
 
 [System.Serializable]
-public class MaterialCost
+public struct MaterialCost
 {
 	public MaterialSO Material;
 	public int Amount;
@@ -24,23 +24,23 @@ public class MaterialCost
 
 [CreateAssetMenu(fileName = "New Crate", menuName = "Inventory System/Item/Crate")]
 [System.Serializable]
-public class CrateSO : ScriptableObject
+public class CrateSO : Item
 {
-	public string Name;
 	public int UnlockLvl;
 	public int MoneyCost;
 	public CrateType Type;
 	public MaterialCost[] MaterialCosts;
 	public float Health;
-	public int AmountInInventory = 0;
+    [Multiline(10)] public string Stats;
 
-	public static bool FreeRedeemable;
+    public static bool FreeRedeemable;
 	public static int MinsLeftForFreeCrate = 0;
 	public static System.Timers.Timer FreeCrateTimer = new System.Timers.Timer(60000);
 
-	//Drops
-	[Multiline(10)] public string Stats;
-	[HideInInspector] public int MoneyDrop;
+    [HideInInspector] public GameObject Prefab;
+
+    //Drops
+    [HideInInspector] public int MoneyDrop;
 	[HideInInspector] public int XPDrop;
 	[HideInInspector] public string ScrapDropName;
 	[HideInInspector] public int ScrapDropAmount;
@@ -82,7 +82,14 @@ public class CrateSO : ScriptableObject
 		public string GetScrapName() { return scrapName; }
 	}
 
-	private int GetRandomValue(params RandomSelection[] selections)
+    public override void LoadData(AssetBundle assetBundle)
+    {
+        base.LoadData(assetBundle);
+
+		Prefab = LoadObject(Name, assetBundle);
+    }
+
+    private int GetRandomValue(params RandomSelection[] selections)
 	{
 		float currentProb = 0;
 		foreach (var selection in selections)
@@ -108,47 +115,40 @@ public class CrateSO : ScriptableObject
 
 	public void Purchase()
 	{
-		if (Player.Instance.Coins >= MoneyCost)
+		if (MaterialCosts.Length == 0 && Player.Instance.Coins >= MoneyCost)
 		{
-			if (MaterialCosts.Length == 0)
-			{
-				Player.Instance.Coins -= MoneyCost;
-				AddToInventory(1);
-				return;
-			}
+            Player.Instance.Coins -= MoneyCost;
+            Player.Instance.Inventory.AddItem(Name, 1);
+        }
+		else
+		{
+            int affortableCosts = 0;
+            for (int i = 0; i < MaterialCosts.Length; i++)
+            {
+                if (Player.Instance.OldInventory.Materials.Find(x => MaterialCosts[i].Material).AmountInInventory >= MaterialCosts[i].Amount)
+                {
+                    affortableCosts++;
+                }
+            }
 
-			int affortableCosts = 0;
-			for (int i = 0; i < MaterialCosts.Length; i++)
-			{
-				if (Player.Instance.OldInventory.Materials.Find(x => MaterialCosts[i].Material).AmountInInventory >= MaterialCosts[i].Amount)
-				{
-					affortableCosts++;
-				}
-			}
-
-			if (affortableCosts == MaterialCosts.Length)
-			{
-				for (int i = 0; i < MaterialCosts.Length; i++)
-				{
-					Player.Instance.Coins -= MoneyCost;
-					Player.Instance.OldInventory.Materials.Find(x => MaterialCosts[i].Material).AmountInInventory -= MaterialCosts[i].Amount;
-					AddToInventory(1);
-				}
-			}
-		}
-	}
-
-	public void AddToInventory(int amount)
-	{
-		AmountInInventory += amount;
-	}
+            if (affortableCosts == MaterialCosts.Length)
+            {
+                for (int i = 0; i < MaterialCosts.Length; i++)
+                {
+                    Player.Instance.Coins -= MoneyCost;
+                    Player.Instance.OldInventory.Materials.Find(x => MaterialCosts[i].Material).AmountInInventory -= MaterialCosts[i].Amount;
+                    Player.Instance.Inventory.AddItem(Name, 1);
+                }
+            }
+        }
+    }
 
 	public void OpenCrate()
 	{
 		CalcutlateDrops();
-		AmountInInventory--;
+		Player.Instance.Inventory.RemoveItem(Name, 1);
 		Player.Instance.Coins += MoneyDrop;
-		Player.Instance.AddXPToUser(XPDrop);
+		Player.Instance.AddXPToPlayer(XPDrop);
 	}
 
 	private void CalcutlateDrops()
@@ -158,7 +158,7 @@ public class CrateSO : ScriptableObject
 		{
 			RandomSelection[] moneySelections = new RandomSelection[moneyDrops.Length];
 
-			for (int i = 0; i < moneySelections.Length; i++)
+			for (int i = 0; i < moneyDrops.Length; i++)
 			{
 				moneySelections[i] = new RandomSelection(moneyDrops[i], moneyDropOdds[i]);
 			}
@@ -205,9 +205,9 @@ public class CrateSO : ScriptableObject
 				}
 			}
 
-			string[] materialDrop = GetRandomScrap(scrapSelections);
-			ScrapDropName = materialDrop[0];
-			ScrapDropAmount = int.Parse(materialDrop[1]);
+			string[] scrapDrop = GetRandomScrap(scrapSelections);
+			ScrapDropName = scrapDrop[0];
+			ScrapDropAmount = int.Parse(scrapDrop[1]);
 		}
 	}
 }

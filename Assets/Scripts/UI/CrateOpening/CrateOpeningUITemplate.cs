@@ -32,7 +32,7 @@ public class CrateOpeningUITemplate : MonoBehaviour
 		gameObject.name = CrateType.Name;
 		statsPanel.transform.GetChild(0).GetComponent<TMP_Text>().text = CrateType.Stats;
 
-		crateViewImage.sprite = CratePrefab.GetComponent<CrateBehaviour>().CrateSprite;
+		//crateViewImage.sprite = CratePrefab.GetComponent<CrateBehaviour>().CrateSprite;
 		crateViewName.text = CrateType.Name;
 		spawnButton.onClick.RemoveAllListeners();
 		spawnButton.onClick.AddListener(() => SingleSelect());
@@ -51,7 +51,8 @@ public class CrateOpeningUITemplate : MonoBehaviour
 		count.Remove('x');
 
 		int selectedAmount = int.Parse(new string(count.ToArray()));
-		if ((selectedAmount + amountToChange) > CrateType.AmountInInventory)
+		if ((selectedAmount + amountToChange) > Player.Instance.Inventory.
+			GetAmountInInventory(CrateType.Name))
 		{
 			return;
 		}
@@ -96,16 +97,17 @@ public class CrateOpeningUITemplate : MonoBehaviour
 			spawnButton.gameObject.SetActive(false);
 			showStatsButton.gameObject.SetActive(false);
 			Counter.text = "0x";
-		} 
+		}
 		else
-		{ 
+		{
 			selectedOverlay.SetActive(true);
 			multiselectPanel.SetActive(false);
 
 			spawnButton.gameObject.SetActive(true);
 			showStatsButton.gameObject.SetActive(true);
-			Counter.text = CrateType.AmountInInventory.ToString() + "x";
-		}	
+			Counter.text = Player.Instance.Inventory.
+				GetAmountInInventory(CrateType.Name) + "x";
+		}
 	}
 
 	private void ShowStats()

@@ -21,7 +21,8 @@ public class Inventory : MonoBehaviour
 	[Space]
 	public int InventorySize = 25;
 
-	[HideInInspector] public Dictionary<string, Item> AllItemsDictionary = new Dictionary<string, Item>();
+	[HideInInspector] public Dictionary<string, Item> AllItemsDictionary = 
+		new Dictionary<string, Item>();
 
 	[SerializeField] private Transform toolHolderTransform;
 
@@ -29,11 +30,9 @@ public class Inventory : MonoBehaviour
 	[SerializeField] string[] assetBundleNames;
 
 	private List<ItemPanel> existingPanels = new List<ItemPanel>();
-	List<AssetBundle> assetBundles = new List<AssetBundle>();
 
 	private void Start()
 	{
-		LoadAssetBundles(assetBundleNames);
 		CreateEmptyInventory();
 		FillAllItemsDictionary();
 
@@ -41,6 +40,8 @@ public class Inventory : MonoBehaviour
 		AddItem("Wood", 40);
 		AddItem("Stone", 30);
 		AddItem("Crowbar", 2);
+		AddItem("Iron", 20);
+		AddItem("Common Crate", 2);
 	}
 
 	private void Update()
@@ -60,19 +61,19 @@ public class Inventory : MonoBehaviour
 			InventoryMenu.activeSelf &&
 			!EventSystem.current.IsPointerOverGameObject())
 		{
-			DropItem(Mouse.ItemSlot.Item, Mouse.ItemSlot.Stacks);
+			DropItem(Mouse.ItemSlot.Item.Name, Mouse.ItemSlot.Stacks);
 		}
 	}
 
 	private void FillAllItemsDictionary()
 	{
-		List<Item> allItems = LoadAllItems("item");
+		//load items with their data from assetbundle
+		List<Item> allItems = LoadAllItems();
 		string itemsInDictionary = "Items in Dictionary: ";
 		foreach (Item item in allItems)
 		{
 			if (!AllItemsDictionary.ContainsKey(item.Name))
 			{
-				item.LoadData(assetBundles);
 				AllItemsDictionary.Add(item.Name, item);
 				itemsInDictionary += ", " + item.Name;
 			}
@@ -92,19 +93,72 @@ public class Inventory : MonoBehaviour
 		{
 			Items.Add(new ItemSlotInfo(null, 0));
 		}
-		Mouse.ItemSlot = new ItemSlotInfo(null, 0);
-	}
+		//Mouse.ItemSlot = new ItemSlotInfo(null, 0);
+        EquippedToolItemPanel.Inventory = this;
+    }
 
-	public void EquipTool(Tool tool)
+    public void EquipTool(Tool tool)
 	{
 		tool.Prefab = Instantiate(tool.Prefab, toolHolderTransform);
 		Player.Instance.equippedTool = tool;		
 	}
 
+	public ItemSlotInfo GetItemSlot(string itemName)
+	{
+        //find item to add
+        Item item = null;
+        AllItemsDictionary.TryGetValue(itemName, out item);
+        //exit if no item was found
+        if (item == null)
+        {
+            Debug.Log($"Could not find item '{itemName}' in Dictionary to get slot from Inventory");
+            return null;
+        }
+
+        foreach (ItemSlotInfo slot in Items)
+        {
+            if (slot.Item != null)
+            {
+                if (slot.Item.Name == itemName)
+                {
+					return slot;
+                }
+            }
+        }
+		return null;
+    }
+
+	public int GetAmountInInventory(string itemName)
+	{
+		int amount = 0;
+
+        //find item to add
+        Item item = null;
+        AllItemsDictionary.TryGetValue(itemName, out item);
+        //exit if no item was found
+        if (item == null)
+        {
+            Debug.Log($"Could not find Item '{itemName}' in Dictionary to get amount from Inventory");
+            return 0;
+        }
+
+		foreach(ItemSlotInfo slot in Items)
+		{
+			if (slot.Item != null)
+			{
+				if(slot.Item.Name == itemName)
+				{
+					amount += slot.Stacks;
+				}
+			}
+		}
+		return amount;
+    }
+
 	/// <returns>Amount not possible to add</returns>
 	public int AddItem(string itemName, int amount)
 	{
-		//find Item to add
+		//find item to add
 		Item item = null;
 		AllItemsDictionary.TryGetValue(itemName, out item);
 		//exit if no item was found
@@ -172,15 +226,47 @@ public class Inventory : MonoBehaviour
 		return amount;
 	}
 
-	public void DropItem(Item itemDrop, int amount)
+	public void RemoveItem(string itemName, int amount)
 	{
-		//find Item to drop
+        //find item to add
+        Item item = null;
+        AllItemsDictionary.TryGetValue(itemName, out item);
+        //exit if no item was found
+        if (item == null)
+        {
+            Debug.Log($"Could not find Item '{itemName}' in Dictionary to remove from Inventory");
+        }
+
+        foreach (ItemSlotInfo slot in Items)
+        {
+            if (slot.Item != null)
+            {
+                if (slot.Item.Name == item.Name)
+                {
+                    if (amount > slot.Stacks)
+					{
+						amount -= slot.Stacks;
+						ClearSlot(slot);
+                    }
+					else
+					{
+						slot.Stacks -= amount;
+					}
+                }
+            }
+        }
+    }
+
+	public void DropItem(string itemName, int amount)
+	{
 		Item item = null;
-		AllItemsDictionary.TryGetValue(itemDrop.Name, out item);
+		//find Item to drop
+		AllItemsDictionary.TryGetValue(itemName, out item);
+
 		//exit if no item was found
 		if (item == null)
 		{
-			Debug.Log($"Could not find Item '{itemDrop.Name}' in Dictionary to drop");
+			Debug.Log($"Could not find Item '{itemName}' in Dictionary to drop");
 			return;
 		}
 
@@ -191,7 +277,7 @@ public class Inventory : MonoBehaviour
 		ItemPickup itemPickup = droppedItem.GetComponentInChildren<ItemPickup>();
 		if (itemPickup != null)
 		{
-			itemPickup.itemToDrop = item.Name;
+			itemPickup.itemToDrop = itemName;
 			itemPickup.amount = amount;
 			itemPickup.displayImage.sprite = item.Sprite;
 			if(amount > 1)
@@ -270,7 +356,7 @@ public class Inventory : MonoBehaviour
 					{
 						panel.DurabilityBarImage.transform.parent.gameObject.SetActive(true);
 						panel.DurabilityBarImage.fillAmount = 
-							((Tool)slot.Item).Durability / ((Tool)slot.Item).MaxDurability;
+							((slot.Item as Tool).Durability / (slot.Item as Tool).MaxDurability);
 					}
 				}
 				else
@@ -283,19 +369,21 @@ public class Inventory : MonoBehaviour
 			index++;
 		}
 
-		EquippedToolItemPanel.Inventory = this;
 		if (EquippedToolItemPanel.ItemSlot.Item != null)
 		{
 			EquippedToolItemPanel.ItemImage.gameObject.SetActive(true);
 			EquippedToolItemPanel.ItemImage.sprite = EquippedToolItemPanel.ItemSlot.Item.Sprite;
-			EquippedToolItemPanel.ItemImage.CrossFadeAlpha(1, 0.05f, true);
-			EquippedToolItemPanel.ItemImage.CrossFadeAlpha(1, 0.05f, true);
-		}
+            EquippedToolItemPanel.DurabilityBarImage.transform.parent.
+				gameObject.SetActive(true);
+            EquippedToolItemPanel.DurabilityBarImage.fillAmount =
+                (EquippedToolItemPanel.ItemSlot.Item as Tool).Durability;
+        }
 		else
 		{
 			EquippedToolItemPanel.ItemImage.gameObject.SetActive(false);
-			EquippedToolItemPanel.DurabilityBarImage.gameObject.SetActive(false);
-		}
+            EquippedToolItemPanel.DurabilityBarImage.transform.parent.
+                gameObject.SetActive(false);
+        }
 
 		Mouse.SetUI();
 	}
@@ -311,37 +399,27 @@ public class Inventory : MonoBehaviour
 		RefreshInventory();
 	}
 
-	public List<Item> LoadAllItems(string assetBundleName)
+	public List<Item> LoadAllItems()
 	{
 		string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "AssetBundles");
-		filePath = System.IO.Path.Combine(filePath, assetBundleName);
+		filePath = System.IO.Path.Combine(filePath, "item");
 
-		//Load AssetBundle
+		//load assetBundle
 		var assetBundleCreateRequest = AssetBundle.LoadFromFileAsync(filePath);
 		AssetBundle assetBundle = assetBundleCreateRequest.assetBundle;
 
-		//Load Items
+		//load items
 		AssetBundleRequest assetRequest = assetBundle.LoadAllAssetsAsync<Item>();
 
 		List<Item> loadedItems = new List<Item>();
 		for (int i = 0; i < assetRequest.allAssets.Length; i++)
 		{
-			loadedItems.Add(assetRequest.allAssets[i] as Item);
-			Debug.Log(assetRequest.allAssets[i].name + " loaded");
+			Item item = assetRequest.allAssets[i] as Item;
+
+			//load item data
+            item.LoadData(assetBundle);
+            loadedItems.Add(item);
 		}
 		return loadedItems;
-	}
-
-	public void LoadAssetBundles(string[] assetBundleNames)
-	{
-		string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "AssetBundles");
-
-		for(int i = 0; i < assetBundleNames.Length; i++)
-		{
-			//Load AssetBundle
-			assetBundles.Add(AssetBundle.
-				LoadFromFileAsync(System.IO.Path.Combine(filePath, assetBundleNames[i])).
-				assetBundle);
-		}
 	}
 }

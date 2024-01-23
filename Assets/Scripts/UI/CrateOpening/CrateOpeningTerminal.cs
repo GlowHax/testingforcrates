@@ -111,33 +111,41 @@ public class CrateOpeningTerminal : Terminal
 
 	private void FillSelectionScrollContent()
 	{
-		int cratesInTotal = 0;
+        noCratesNotification.SetActive(false);
 
-		for (int i = 0; i < Player.Instance.OldInventory.Crates.Count; i++)
+        List<CrateSO> cratesInInventory = new List<CrateSO>();
+		for (int i = 0; i < Player.Instance.Inventory.Items.Count; i++)
 		{
-			GameObject cratePrefab = Player.Instance.CratePrefabs[i];
+			Item item = Player.Instance.Inventory.Items[i].Item;
 
-			if (Player.Instance.OldInventory.Crates[i].AmountInInventory > 0)
+			if (item != null && item is CrateSO &&
+				!cratesInInventory.Contains(item as CrateSO))
 			{
-				cratesInTotal++;
-
-				CrateOpeningUITemplate crateView =
-					Instantiate(selectionViewTemplate, selectionScrollContent.transform).GetComponent<CrateOpeningUITemplate>();
-				crateView.transform.SetSiblingIndex(i);
-
-				crateView.CrateOpeningUI = this;
-				crateView.CratePrefab = cratePrefab;
-				crateView.CrateType = Player.Instance.OldInventory.Crates[i];
-				crateView.Counter.text = Player.Instance.OldInventory.Crates[i].AmountInInventory.ToString() + "x";
-
-				crateView.Setup();
+				cratesInInventory.Add(item as CrateSO);
 			}
 		}
 
-		if (cratesInTotal == 0)
-			noCratesNotification.SetActive(true);
-		else
-			noCratesNotification.SetActive(false);
+        if (cratesInInventory.Count == 0)
+        {
+            noCratesNotification.SetActive(true);
+            return;
+        }
+
+        foreach (CrateSO crate in cratesInInventory)
+        {
+			CrateOpeningUITemplate crateView =
+                Instantiate(selectionViewTemplate, 
+				selectionScrollContent.transform).
+				GetComponent<CrateOpeningUITemplate>();
+
+            crateView.CrateOpeningUI = this;
+            crateView.CrateType = crate;
+            crateView.CratePrefab = crate.Prefab;
+            crateView.Counter.text = Player.Instance.Inventory.
+            GetAmountInInventory(crateView.CrateType.Name) + "x";
+
+            crateView.Setup();
+        }
 	}
 
 	public void StartCrateOpening()
