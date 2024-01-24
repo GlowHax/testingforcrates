@@ -21,7 +21,6 @@ MonoBehaviour:
   Type: 0
   MaterialCosts: []
   Health: 10
-  MaxHealth: 0
   Stats: 'Coins: 100-2000
 
 
@@ -50,15 +49,18 @@ MonoBehaviour:
   - 0.5
   - 0.15
   scrapDrops:
-  - ScrapName: None
+  - ScrapName: 
     Amount: 0
     Probability: 0.7
   - ScrapName: Clothes Hanger
     Amount: 1
     Probability: 0.21
+  - ScrapName: Clothes Hanger
+    Amount: 2
+    Probability: 0.02
   - ScrapName: Old Boot
     Amount: 1
-    Probability: 0.08
+    Probability: 0.06
   - ScrapName: Bent Fork
     Amount: 1
     Probability: 0.01

@@ -185,25 +185,13 @@ public class CrateSO : Item
 
 			for (int i = 0; i < scrapDrops.Length; i++)
 			{
-				if(scrapDrops[i].ScrapName == null)
-				{
-					scrapSelections[i] =
-					new RandomScrapSelection(
-					"",
-					scrapDrops[i].Amount,
-					scrapDrops[i].Probability
-					);
-				}
-				else
-				{
-					scrapSelections[i] =
-					new RandomScrapSelection(
-					scrapDrops[i].ScrapName,
-					scrapDrops[i].Amount,
-					scrapDrops[i].Probability
-					);
-				}
-			}
+                scrapSelections[i] =
+                    new RandomScrapSelection(
+                    scrapDrops[i].ScrapName,
+                    scrapDrops[i].Amount,
+                    scrapDrops[i].Probability
+                    );
+            }
 
 			string[] scrapDrop = GetRandomScrap(scrapSelections);
 			ScrapDropName = scrapDrop[0];

@@ -91,7 +91,7 @@ public class CrateBehaviour : MonoBehaviour, IHittable
 		Destroy(transform.GetComponent<Rigidbody>());
 
 		Crate.OpenCrate();
-		if (Crate.ScrapDropName != "None" || Crate.ScrapDropName != "")
+		if (Crate.ScrapDropName != "None" && Crate.ScrapDropName != "")
 		{
 			//find scrap to drop
 			Item scrap = null;
@@ -110,7 +110,6 @@ public class CrateBehaviour : MonoBehaviour, IHittable
 			{
 				itemPickup.itemToDrop = Crate.ScrapDropName;
 				itemPickup.amount = Crate.ScrapDropAmount;
-				
 			}
 		}
 

@@ -22955,7 +22955,8 @@ MonoBehaviour:
   brokenModel: {fileID: 62410153998823027}
   lootText: {fileID: 2625291304745382124, guid: 16e30376ccc3b9549aa8950fae8b4231,
     type: 3}
-  droppedItemObject: {fileID: 0}
+  droppedItemObject: {fileID: 3069518473532175039, guid: ee7c583b9a1c3524ba7d7c5de3f9fdb0,
+    type: 3}
 --- !u!65 &8101520535550808707
 BoxCollider:
   m_ObjectHideFlags: 0
