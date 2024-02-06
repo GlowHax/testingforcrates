@@ -1761,7 +1761,7 @@ MonoBehaviour:
   m_text: 0x
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1880,12 +1880,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b750ff8cb1ebc264fa515cc248ae3bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CratePrefab: {fileID: 0}
-  CrateType: {fileID: 0}
-  CrateOpeningUI: {fileID: 0}
-  Counter: {fileID: 7498784503748125002}
   crateViewName: {fileID: 709635094446871165}
   crateViewImage: {fileID: 709635094314331377}
+  counter: {fileID: 7498784503748125002}
   spawnButton: {fileID: 709635093427605328}
   showStatsButton: {fileID: 709635093755614069}
   statsPanel: {fileID: 709635093677693624}

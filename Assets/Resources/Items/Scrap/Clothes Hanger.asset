@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd57c54e251e83f4190133029b9ef8d9, type: 3}
+  m_Name: Clothes Hanger
+  m_EditorClassIdentifier: 
+  Name: Clothes Hanger
+  MaxInventoryStacks: 5
+  Description: "Must have been large enough to put \nclothes on it at any size. It
+    may held \nsome wonderful clothes."
+  InventorySprite: {fileID: 21300000, guid: 8b0199403238aad439b527c3365edd34, type: 3}

@@ -372,9 +372,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ec024913b0f0e7478f03f7004894d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemToDrop: 
-  amount: 1
-  displayImage: {fileID: 6256035419254999635}
+  ItemToDrop: {fileID: 0}
+  Amount: 1
+  DisplayImage: {fileID: 6256035419254999635}
   ItemStacksText: {fileID: 687616272859913016}
 --- !u!1 &7345530358306500218
 GameObject:

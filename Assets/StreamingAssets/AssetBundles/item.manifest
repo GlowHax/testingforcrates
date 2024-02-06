@@ -1,118 +1,23 @@
 ManifestFileVersion: 0
-CRC: 1472238219
+CRC: 2562869651
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f6f5be97182c243fe83dedd7e7296114
+    Hash: 77486ab64fd6faaa9818b8c2dcfd8047
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 7fa1b15fd62e3f2816b0ac95dae6b22d
+    Hash: a1e66bf5d2e31ca2c0e5e2d61f9aa47a
 HashAppended: 0
 ClassTypes:
-- Class: 1
-  Script: {instanceID: 0}
-- Class: 4
-  Script: {instanceID: 0}
-- Class: 21
-  Script: {instanceID: 0}
-- Class: 23
-  Script: {instanceID: 0}
 - Class: 28
   Script: {instanceID: 0}
-- Class: 33
-  Script: {instanceID: 0}
-- Class: 43
-  Script: {instanceID: 0}
-- Class: 48
-  Script: {instanceID: 0}
-- Class: 54
-  Script: {instanceID: 0}
-- Class: 65
-  Script: {instanceID: 0}
-- Class: 74
-  Script: {instanceID: 0}
-- Class: 91
-  Script: {instanceID: 0}
-- Class: 95
-  Script: {instanceID: 0}
-- Class: 102
-  Script: {instanceID: 0}
-- Class: 114
-  Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: dd57c54e251e83f4190133029b9ef8d9, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 4aede24f824ef2242aba3603cca9c0ee, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 9c171b5eb880733408c06cc44a9ea852, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 897177380a10d44408952bf70ab56080, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 3d1d07af5900a80458bcf36db3bf3fba, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: c94491ad661266940843c71c9dc05fc6, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 7f2877c8b6c28e941ab7a8ee379a3a42, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 3fedea2d03933984b8f19bd685269bda, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 8ec024913b0f0e7478f03f7004894d93, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: b4880a43bc5f66f478bad7c70dfa822f, type: 3}
 - Class: 115
-  Script: {instanceID: 0}
-- Class: 128
-  Script: {instanceID: 0}
-- Class: 135
-  Script: {instanceID: 0}
-- Class: 198
-  Script: {instanceID: 0}
-- Class: 199
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
-- Class: 222
-  Script: {instanceID: 0}
-- Class: 223
-  Script: {instanceID: 0}
-- Class: 224
-  Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/Images/Items/Materials/IronItemSprite.png
-- Assets/Scripts/SO/Items/Material/Stone.asset
-- Assets/Scripts/SO/Items/Tool/Crowbar.asset
-- Assets/Scripts/SO/Materials/Iron.asset
-- Assets/Scripts/SO/Items/Scrap/Broken Lightbulb.asset
-- Assets/Scripts/SO/Items/Crates/Main/UncommonCrate.asset
-- Assets/Scripts/SO/Items/Crates/Main/CommonCrate.asset
-- Assets/Images/Items/Scrap/Broken LightbulbItemSprite.png
-- Assets/Images/Items/Materials/StoneItemSprite.png
-- Assets/Scripts/SO/Items/Material/Wood.asset
-- Assets/Images/Items/Scrap/Old BootItemSprite.png
-- Assets/Prefabs/Crates/Common Crate.prefab
-- Assets/Scripts/SO/Items/Material/Iron.asset
-- Assets/Images/Items/Scrap/CablesItemSprite.png
-- Assets/Prefabs/Crates/Uncommon Crate.prefab
-- Assets/Prefabs/Items/Crowbar.prefab
-- Assets/Scripts/SO/Items/Scrap/Bent Fork.asset
-- Assets/Images/Items/Scrap/Bent ForkItemSprite.png
-- Assets/Images/Items/Materials/WoodItemSprite.png
-- Assets/Scripts/SO/Items/Scrap/Clothes Hanger.asset
-- Assets/Scripts/SO/Items/Material/Copper.asset
-- Assets/Images/Items/NoNameItemSprite.png
-- Assets/Images/Items/Tools/CrowbarItemSprite.png
-- Assets/Images/Items/Materials/CopperItemSprite.png
-- Assets/Scripts/SO/Items/Scrap/Old Boot.asset
-- Assets/Images/Items/Scrap/Clothes HangerItemSprite.png
-- Assets/Scripts/SO/Items/Scrap/Cables.asset
-- Assets/Images/Items/Materials/SandItemSprite.png
+- Assets/_Scripts/SO/Materials/Iron.asset
 Dependencies: []
