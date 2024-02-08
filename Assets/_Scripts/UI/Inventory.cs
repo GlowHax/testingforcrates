@@ -14,7 +14,7 @@ public class Inventory : MonoBehaviour
     [Space]
     [Header("Menu Components")]
     public GameObject InventoryMenu;
-    public GameObject ItemPanel;
+    public ItemPanel ItemPanelPrefab;
     public GameObject ItemPanelGrid;
 	public TMP_Text HeadlineText;
 
@@ -189,21 +189,21 @@ public class Inventory : MonoBehaviour
 	{
 		Item item = ResourceSystem.Instance.GetItem(itemName);
 
-		foreach (ItemSlotInfo slot in Items)
+		foreach (ItemPanel panel in existingPanels)
         {
-            if (slot.Item != null)
+            if (panel.ItemSlot.Item != null)
             {
-                if (slot.Item.Name == item.Name)
+                if (panel.ItemSlot.Item.Name == item.Name)
                 {
-                    if (amount > slot.Stacks)
+                    if (amount > panel.ItemSlot.Stacks)
 					{
-						amount -= slot.Stacks;
-						ClearSlot(slot);
+						amount -= panel.ItemSlot.Stacks;
+						panel.ClearSlot();
 						return;
                     }
 					else
 					{
-						slot.Stacks -= amount;
+						panel.ItemSlot.Stacks -= amount;
 						return;
 					}
                 }
@@ -232,16 +232,8 @@ public class Inventory : MonoBehaviour
 			rb.velocity = Player.Instance.Cam.transform.forward * 3f;
 		}
 
-		ClearSlot(Mouse.ItemSlot);
+		Mouse.ClearSlot();
 		RefreshInventory();
-	}
-
-	public void ClearSlot(ItemSlotInfo slot)
-	{
-		slot.Item = null;
-		slot.Stacks = 0;
-		slot.Durability = 0;
-		slot.MaxDurability = 0;
 	}
 
 	public void RefreshInventory()
@@ -254,8 +246,9 @@ public class Inventory : MonoBehaviour
 			int amountToCreate = InventorySize - existingPanels.Count;
 			for (int i = 0; i < amountToCreate; i++)
 			{
-				GameObject newPanel = Instantiate(ItemPanel, ItemPanelGrid.transform);
-				existingPanels.Add(newPanel.GetComponent<ItemPanel>());
+				ItemPanel newPanel = 
+					Instantiate(ItemPanelPrefab, ItemPanelGrid.transform);
+				existingPanels.Add(newPanel);
 			}
 		}
 
@@ -332,8 +325,20 @@ public class Inventory : MonoBehaviour
 		InventoryMenu.SetActive(show);
 		if(!show)
 		{
-			Mouse.EmptySlot();
-		}
+            if (Mouse.ItemSlot.Item != null)
+            {
+				//empty mouse slot to inventory
+                int amountToDrop = Player.Instance.Inventory.
+					AddItem(Mouse.ItemSlot.Item.Name, Mouse.ItemSlot.Stacks);
+                if (amountToDrop > 0)
+                {
+					//drop the rest if inventory is full
+                    Player.Instance.Inventory.
+						DropItem(Mouse.ItemSlot.Item.Name, amountToDrop);
+                }
+            }
+			Mouse.ClearSlot();
+        }
 		RefreshInventory();
 	}
 }

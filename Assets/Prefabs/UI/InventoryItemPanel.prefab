@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 5558278808800089150}
   - component: {fileID: 5558278808800089149}
   m_Layer: 7
-  m_Name: ItemIcon
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -372,7 +372,7 @@ GameObject:
   - component: {fileID: 5558278809761398178}
   - component: {fileID: 2644484454075819490}
   m_Layer: 7
-  m_Name: ItemPanel
+  m_Name: InventoryItemPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -447,7 +447,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5558278809761398176}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12cdb46666d430c41b5cfd5508883881, type: 3}
+  m_Script: {fileID: 11500000, guid: 94d5381864933834b8d67e255fa3ea13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Inventory: {fileID: 0}
@@ -455,10 +455,11 @@ MonoBehaviour:
     Item: {fileID: 0}
     Name: 
     Stacks: 0
+    Durability: 0
+    MaxDurability: 0
   ItemImage: {fileID: 5558278808800089149}
   StacksText: {fileID: 5558278809489006644}
   DurabilityBarImage: {fileID: 3721644344962513444}
-  PanelType: 0
 --- !u!1 &7433414378865223680
 GameObject:
   m_ObjectHideFlags: 0

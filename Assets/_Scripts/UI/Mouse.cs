@@ -50,16 +50,8 @@ public class Mouse : MonoBehaviour
 		}
 	}
 
-    public void EmptySlot()
+    public void ClearSlot()
     {
-		if (ItemSlot.Item != null)
-		{
-			int amountToDrop = Player.Instance.Inventory.AddItem(ItemSlot.Item.Name, ItemSlot.Stacks);
-			if(amountToDrop > 0)
-			{
-				Player.Instance.Inventory.DropItem(ItemSlot.Item.Name, amountToDrop);
-			}
-		}
-		Player.Instance.Inventory.ClearSlot(ItemSlot);
-	}
+        ItemSlot = new ItemSlotInfo(null, 0, 0, 0);
+    }
 }

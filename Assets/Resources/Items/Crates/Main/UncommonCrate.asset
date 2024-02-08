@@ -17,9 +17,8 @@ MonoBehaviour:
   Value: 500
   Description: 
   InventorySprite: {fileID: 0}
-  UnlockLvl: 4
-  MoneyCost: 1000
   Type: 0
+  UnlockLvl: 4
   MaterialCosts: []
   Health: 25
   Stats: 'Coins: 400-10000
@@ -33,6 +32,7 @@ MonoBehaviour:
     Wood
 
     Stone'
+  Prefab: {fileID: 3158086153665697612, guid: a0a40ddd0ce31d14fa657cbe419c8e01, type: 3}
   MoneyDrop: 1000
   XPDrop: 20
   ScrapDropName: 

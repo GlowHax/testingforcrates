@@ -17,9 +17,8 @@ MonoBehaviour:
   Value: 500
   Description: 
   InventorySprite: {fileID: 0}
-  UnlockLvl: 0
-  MoneyCost: 500
   Type: 0
+  UnlockLvl: 0
   MaterialCosts: []
   Health: 10
   Stats: 'Coins: 100-2000
@@ -31,8 +30,9 @@ MonoBehaviour:
     Scrap:
 
 '
+  Prefab: {fileID: 3158086153665697612, guid: 271148e059a9aac43a0f5b02b9d3a5ff, type: 3}
   MoneyDrop: 400
-  XPDrop: 30
+  XPDrop: 20
   ScrapDropName: 
   ScrapDropAmount: 0
   moneyDrops: 64000000fa00000090010000ee020000e8030000d0070000

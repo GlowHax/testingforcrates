@@ -37,7 +37,7 @@ public class Crate : Item
 	public static int MinsLeftForFreeCrate = 0;
 	public static System.Timers.Timer FreeCrateTimer = new System.Timers.Timer(60000);
 
-    public CrateBehaviour Prefab { get; private set; }
+	public CrateBehaviour Prefab;
 
     //Drops
     [HideInInspector] public int MoneyDrop;

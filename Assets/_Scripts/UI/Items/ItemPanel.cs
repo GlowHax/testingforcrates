@@ -5,14 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public enum ItemPanelType
-{
-    Inventory,
-    ToolEquip,
-    PassiveEquip
-}
-
-public class ItemPanel : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler, IPointerUpHandler
+public abstract class ItemPanel : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler, IPointerUpHandler
 {
     [HideInInspector] public Inventory Inventory;
     public ItemSlotInfo ItemSlot;
@@ -20,21 +13,18 @@ public class ItemPanel : MonoBehaviour, IPointerEnterHandler, IPointerDownHandle
     public TextMeshProUGUI StacksText;
     public Image DurabilityBarImage;
 
-	public ItemPanelType PanelType = ItemPanelType.Inventory;
 
-	private Mouse mouse;
+	protected Mouse mouse;
     private bool click;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         eventData.pointerPress = this.gameObject;
     }
-
     public void OnPointerDown(PointerEventData eventData)
     {
         click = true;
     }
-
 	public void OnPointerUp(PointerEventData eventData)
 	{
 		if (click)
@@ -44,7 +34,7 @@ public class ItemPanel : MonoBehaviour, IPointerEnterHandler, IPointerDownHandle
         }
 	}
 
-	public void PickupItem(bool halfSplit)
+	public virtual void PickupItem(bool halfSplit)
     {
 		mouse.ItemSlot.Item = ItemSlot.Item;
 		mouse.ItemImage.sprite = ItemSlot.Item.InventorySprite;
@@ -53,71 +43,62 @@ public class ItemPanel : MonoBehaviour, IPointerEnterHandler, IPointerDownHandle
 
         if (halfSplit)
         {
-            if (ItemSlot.Stacks % 2 == 0)
+            if (ItemSlot.Stacks == 1)
+            {
+                mouse.ItemSlot.Stacks = ItemSlot.Stacks;
+                ClearSlot();
+            }
+            else if (ItemSlot.Stacks % 2 == 0)
             {
                 mouse.ItemSlot.Stacks = (ItemSlot.Stacks / 2);
+                ItemSlot.Stacks -= mouse.ItemSlot.Stacks;
             }
             else
             {
                 mouse.ItemSlot.Stacks = (ItemSlot.Stacks / 2) + 1;
+                ItemSlot.Stacks -= mouse.ItemSlot.Stacks;
             }
-            ItemSlot.Stacks -= mouse.ItemSlot.Stacks;
         }
         else
         {
-            if(PanelType == ItemPanelType.ToolEquip)
-            {
-				Inventory.EquipTool(ItemSlot.Item as Tool, false);
-			}
-			mouse.ItemSlot.Stacks = ItemSlot.Stacks;
-            Inventory.ClearSlot(ItemSlot);
+            mouse.ItemSlot.Stacks = ItemSlot.Stacks;
+            ClearSlot();
         }
     }
 
-    public void DropItem(bool singleItemDrop)
+    public virtual void DropItem(bool singleItemDrop)
     {
-		if (PanelType == ItemPanelType.Inventory)
-        {
-			ItemSlot.Item = mouse.ItemSlot.Item;
-			ItemSlot.Durability = mouse.ItemSlot.Durability;
-			ItemSlot.MaxDurability = mouse.ItemSlot.MaxDurability;
+        ItemSlot.Item = mouse.ItemSlot.Item;
+        ItemSlot.Durability = mouse.ItemSlot.Durability;
+        ItemSlot.MaxDurability = mouse.ItemSlot.MaxDurability;
 
-			if (singleItemDrop && mouse.ItemSlot.Stacks > 1)
-			{
-				ItemSlot.Stacks = 1;
-				mouse.ItemSlot.Stacks--;
-			}
-			else
-			{
-				ItemSlot.Stacks = mouse.ItemSlot.Stacks;
-				Inventory.ClearSlot(mouse.ItemSlot);
-			}
-		}
-		else if(PanelType == ItemPanelType.ToolEquip && mouse.ItemSlot.Item is Tool)
-		{
-			ItemSlot.Item = mouse.ItemSlot.Item;
-			ItemSlot.Stacks = mouse.ItemSlot.Stacks;
-			ItemSlot.Durability = mouse.ItemSlot.Durability;
-			ItemSlot.MaxDurability = mouse.ItemSlot.MaxDurability;
-			Inventory.EquipTool(ItemSlot.Item as Tool, true);
-			Inventory.ClearSlot(mouse.ItemSlot);
-		}
+        if (singleItemDrop && mouse.ItemSlot.Stacks > 1)
+        {
+            ItemSlot.Stacks = 1;
+            mouse.ItemSlot.Stacks--;
+        }
+        else
+        {
+            ItemSlot.Stacks = mouse.ItemSlot.Stacks;
+            mouse.ClearSlot();
+        }
 	}
 
-	public void SwapItem(ItemSlotInfo slotA, ItemSlotInfo slotB)
+	public virtual void SwapItem()
 	{
 		ItemSlotInfo tempItem = new ItemSlotInfo(
-            slotA.Item, slotA.Stacks, slotA.Durability, slotA.MaxDurability);
+            ItemSlot.Item, ItemSlot.Stacks, ItemSlot.Durability, 
+            ItemSlot.MaxDurability);
 
-		slotA.Item = slotB.Item;
-        slotA.Stacks = slotB.Stacks;
-        slotA.Durability = slotB.Durability;
-        slotA.MaxDurability = slotB.MaxDurability;
+        ItemSlot.Item = mouse.ItemSlot.Item;
+        ItemSlot.Stacks = mouse.ItemSlot.Stacks;
+        ItemSlot.Durability = mouse.ItemSlot.Durability;
+        ItemSlot.MaxDurability = mouse.ItemSlot.MaxDurability;
 
-        slotB.Item = tempItem.Item;
-        slotB.Stacks = tempItem.Stacks;
-        slotB.Durability = tempItem.Durability;
-        slotB.MaxDurability = tempItem.MaxDurability;
+        mouse.ItemSlot.Item = tempItem.Item;
+        mouse.ItemSlot.Stacks = tempItem.Stacks;
+        mouse.ItemSlot.Durability = tempItem.Durability;
+        mouse.ItemSlot.MaxDurability = tempItem.MaxDurability;
 	}
 
     public void StackItem(bool singleItemStack)
@@ -131,7 +112,7 @@ public class ItemPanel : MonoBehaviour, IPointerEnterHandler, IPointerDownHandle
 			ItemSlot.Stacks++;
 			if (mouse.ItemSlot.Stacks == 1)
 			{
-				Inventory.ClearSlot(mouse.ItemSlot);
+				mouse.ClearSlot();
 			}
 			else
 			{
@@ -148,10 +129,18 @@ public class ItemPanel : MonoBehaviour, IPointerEnterHandler, IPointerDownHandle
 			else
 			{
 				ItemSlot.Stacks += mouse.ItemSlot.Stacks;
-				Inventory.ClearSlot(mouse.ItemSlot);
+				mouse.ClearSlot();
 			}
 		}
 	}
+
+    public void ClearSlot()
+    {
+        ItemSlot.Item = null;
+        ItemSlot.Stacks = 0;
+        ItemSlot.Durability = 0;
+        ItemSlot.MaxDurability = 0;
+    }
 
     public void OnClick()
     {
@@ -160,7 +149,7 @@ public class ItemPanel : MonoBehaviour, IPointerEnterHandler, IPointerDownHandle
             mouse = Inventory.Mouse;
 
             //grab item if mouse slot is empty
-            if(mouse.ItemSlot.Item == null )
+            if(mouse.ItemSlot.Item == null)
             {
                 if(ItemSlot.Item != null)
                 {
@@ -184,7 +173,7 @@ public class ItemPanel : MonoBehaviour, IPointerEnterHandler, IPointerDownHandle
                 else if(ItemSlot.Item.Name != mouse.ItemSlot.Item.Name ||
                     ItemSlot.Durability != mouse.ItemSlot.Durability)
                 {
-					SwapItem(ItemSlot, mouse.ItemSlot);
+					SwapItem();
 				}
 			}
 

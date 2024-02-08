@@ -33,7 +33,7 @@ public class CrowBar : MonoBehaviour
 		Debug.DrawRay(ray.origin, ray.direction * inventoryItem.MaxUseDistance);
 
 		if (Physics.Raycast(ray, out RaycastHit hitInfo, inventoryItem.MaxUseDistance,
-			LayerMask.NameToLayer("Hittable")) &&
+			LayerMask.GetMask("Hittable")) &&
 			hitInfo.transform.TryGetComponent(out IHittable hittableObject))
 		{
 			hittableObject.TakeHit(inventoryItem.Power);
@@ -46,7 +46,7 @@ public class CrowBar : MonoBehaviour
 		inventoryItemPanel.ItemSlot.Durability--;
 		if (inventoryItemPanel.ItemSlot.Durability == 0)
 		{
-			Player.Instance.Inventory.ClearSlot(inventoryItemPanel.ItemSlot);
+			inventoryItemPanel.ClearSlot();
 			Destroy(gameObject);
 		}
 	}

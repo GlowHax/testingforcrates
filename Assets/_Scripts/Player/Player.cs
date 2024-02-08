@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
 		{
 			instance = this;
 		}
-		DontDestroyOnLoad(gameObject);
+		//DontDestroyOnLoad(gameObject);
 	}
 
 	private void Update()
