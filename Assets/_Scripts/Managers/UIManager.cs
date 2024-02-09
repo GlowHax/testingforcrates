@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public abstract class UIManager : MonoBehaviour
+public abstract class UIManager : Singleton<UIManager>
 {
 	[SerializeField] protected TMP_Text coinsHUD;
 	[SerializeField] protected GameObject levelHUD;
