@@ -16,4 +16,4 @@ MonoBehaviour:
   MaxInventoryStacks: 25
   Value: 4000
   Description: 
-  InventorySprite: {fileID: 21300000, guid: 11bd5a9029326954bb1d99cc25615d41, type: 3}
+  InventorySprite: {fileID: 21300000, guid: 21772b8c5ba64f24b8121cd370186716, type: 3}

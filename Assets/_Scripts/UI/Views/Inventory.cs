@@ -5,18 +5,18 @@ using System.Linq;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class Inventory : MonoBehaviour
+public class Inventory : View
 {
     [SerializeReference] public List<ItemSlotInfo> Items = new List<ItemSlotInfo>();
 	public ItemPanel EquippedToolItemPanel;
 	public Tool EquippedTool;
 
-    [Space]
-    [Header("Menu Components")]
+	[Space]
+	[Header("Menu Components")]
     public GameObject InventoryMenu;
     public ItemPanel ItemPanelPrefab;
     public GameObject ItemPanelGrid;
-	public TMP_Text HeadlineText;
+	public TMP_Text TitleText;
 
 	public Mouse Mouse;
 
@@ -26,7 +26,6 @@ public class Inventory : MonoBehaviour
 	[SerializeField] private Transform toolHolderTransform;
 
 	[SerializeField] private GameObject droppedItemObject;
-	[SerializeField] string[] assetBundleNames;
 
 	private List<ItemPanel> existingPanels = new List<ItemPanel>();
 
@@ -40,18 +39,13 @@ public class Inventory : MonoBehaviour
 		GameManager.OnGameStateChanged -= GameManager_OnGameStateChanged;
 	}
 
-	private void Update()
+    public override void Initialize()
+    {
+
+    }
+
+    private void Update()
 	{
-		if(Input.GetKeyDown(KeyCode.Tab))
-        {
-			ShowInventoryMenu(!InventoryMenu.activeSelf);
-        }
-
-		if(Input.GetKeyDown(KeyCode.Escape) && InventoryMenu.activeSelf)
-		{
-			ShowInventoryMenu(false);
-		}
-
 		if(Input.GetMouseButtonDown(0) && 
 			Mouse.ItemSlot.Item != null && 
 			InventoryMenu.activeSelf &&
@@ -319,26 +313,29 @@ public class Inventory : MonoBehaviour
 		Mouse.SetUI();
 	}
 
-	private void ShowInventoryMenu(bool show)
-	{
-		Player.Instance.FPMouse(!show);
-		InventoryMenu.SetActive(show);
-		if(!show)
-		{
-            if (Mouse.ItemSlot.Item != null)
+    public override void Show(Transform parent = null)
+    {
+        Player.Instance.FPMouse(false);
+        RefreshInventory();
+        base.Show(parent);
+    }
+
+    public override void Hide()
+    {
+        if (Mouse.ItemSlot.Item != null)
+        {
+            //empty mouse slot to inventory
+            int amountToDrop = Player.Instance.Inventory.
+                AddItem(Mouse.ItemSlot.Item.Name, Mouse.ItemSlot.Stacks);
+            if (amountToDrop > 0)
             {
-				//empty mouse slot to inventory
-                int amountToDrop = Player.Instance.Inventory.
-					AddItem(Mouse.ItemSlot.Item.Name, Mouse.ItemSlot.Stacks);
-                if (amountToDrop > 0)
-                {
-					//drop the rest if inventory is full
-                    Player.Instance.Inventory.
-						DropItem(Mouse.ItemSlot.Item.Name, amountToDrop);
-                }
+                //drop the rest if inventory is full
+                Player.Instance.Inventory.
+                    DropItem(Mouse.ItemSlot.Item.Name, amountToDrop);
             }
-			Mouse.ClearSlot();
         }
-		RefreshInventory();
-	}
+        Mouse.ClearSlot();
+        Player.Instance.FPMouse(true);
+        base.Hide();
+    }
 }

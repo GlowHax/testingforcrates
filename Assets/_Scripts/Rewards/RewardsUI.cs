@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RewardsUI : UIManager
+public class RewardsUI : oldUIManager
 {
 	[SerializeField] Crate freeCrate;
 	[SerializeField] Button freeCrateClaimButton;

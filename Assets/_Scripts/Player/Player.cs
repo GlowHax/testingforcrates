@@ -47,6 +47,17 @@ public class Player : MonoBehaviour
 
 	private void Update()
 	{
+		if (Input.GetKeyDown(KeyCode.Tab))
+		{
+			if (Inventory.Visible)
+			{
+                UIManager.Instance.ShowLast();
+            }
+			else
+			{
+                UIManager.Instance.ShowScreen(Inventory);
+            }
+        }
 		if(Input.GetKeyDown(KeyCode.Q))
 		{
 			SelectEquippedTool(!equippedTool.Prefab.activeSelf);
@@ -55,12 +66,12 @@ public class Player : MonoBehaviour
 
 	public void FPMovement(bool value)
 	{
-		Player.Instance.characterMovement.Active = value;
+		characterMovement.Active = value;
 	}
 
 	public void FPMouse(bool value)
 	{
-		Player.Instance.mouseLook.Active = value;
+		mouseLook.Active = value;
 	}
 
 	private void SelectEquippedTool(bool select)

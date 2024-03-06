@@ -6,7 +6,8 @@ using UnityEngine;
 [Serializable]
 public enum GameState
 {
-    Starting
+    Starting,
+    Pause
 }
 
 public class GameManager : Singleton<GameManager>

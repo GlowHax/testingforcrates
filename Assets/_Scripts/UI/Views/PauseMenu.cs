@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Menu : MonoBehaviour
+public class PauseMenu : View
 {
 	[SerializeField] private GameObject menu;
 	private bool showingMenu = false;
@@ -12,20 +12,25 @@ public class Menu : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Escape) && !Player.Instance.Inventory.InventoryMenu.activeSelf)
 		{
 			showingMenu = !showingMenu;
-			ShowMenu(showingMenu);
 		}
 	}
 
-	public void ShowMenu(bool value)
-	{
-		Player.Instance.FPMovement(!value);
-		menu.SetActive(value);
-	}
+    public override void Initialize()
+    {
+        
+    }
 
-	public void Settings()
-	{
+    public override void Show(Transform parent = null)
+    {
+        base.Show(parent);
+        Player.Instance.FPMovement(false);
+    }
 
-	}
+    public override void Hide()
+    {
+        base.Hide();
+        Player.Instance.FPMovement(true);
+    }
 
 	public void QuitGame()
 	{

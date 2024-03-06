@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class WorkshopUI : UIManager
+public class WorkshopUI : oldUIManager
 {
 	//LockedPanel
 	[SerializeField] GameObject lockedPanel;

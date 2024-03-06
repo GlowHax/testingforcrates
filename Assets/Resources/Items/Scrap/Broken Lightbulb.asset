@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Broken Lightbulb
   MaxInventoryStacks: 5
+  Value: 0
   Description: 'Very sharp on the edges. '
-  InventorySprite: {fileID: 21300000, guid: c9049c8c46afe9947b20f1bff81dcbe2, type: 3}
+  InventorySprite: {fileID: 21300000, guid: 40b8bc1ad9d5cb84894d316e50f7b9cb, type: 3}
+  MaterialDrops: []
