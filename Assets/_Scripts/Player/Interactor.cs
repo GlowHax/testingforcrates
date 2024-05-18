@@ -5,18 +5,19 @@ using UnityEngine;
 
 public class Interactor : MonoBehaviour
 {
-	[SerializeField] private InputReader input;
+    [HideInInspector] public bool CanInteract = false;
+
+    [SerializeField] private InputReader input;
 	[SerializeField] private Transform interactableCheck;
 	[SerializeField] private LayerMask interactableMask;
 	[SerializeField] private GameObject hud;
 	[SerializeField] private GameObject interactInfoText;
 
-	[HideInInspector] public bool inReachOfTerminal = false;
 	[HideInInspector] public Terminal TerminalInReach;
 
 	private IInteractable interactable;
-	private bool canInteract = false;
 	private bool isInteracting = false;
+	
 	private readonly Collider[] colliders = new Collider[1];
 
     private void Start()
@@ -30,25 +31,25 @@ public class Interactor : MonoBehaviour
 		{
             if(IsPlayerFocusedOnInteractable())
             {
-                canInteract = true;
+                CanInteract = true;
                 interactInfoText.SetActive(true);
             }
             else
             {
-                canInteract = false;
+                CanInteract = false;
                 interactInfoText.SetActive(false);
             }
         }
         else
         {
-            canInteract = false;
+            CanInteract = false;
             interactInfoText.SetActive(false);
         }
     }
 
     private void HandleInteraction()
     {
-        if (canInteract && !isInteracting)
+        if (CanInteract && !isInteracting)
         {
             isInteracting = true;
             hud.SetActive(false);

@@ -11,9 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CharacterController controller;
 	[SerializeField] private Transform groundCheck;
 	[SerializeField] private LayerMask groundMask;
-	[SerializeField] private CharacterController characterController;
-
-    private Inventory inventory;
+    [SerializeField] private Interactor interactor;
 
 	//Movement
 	[SerializeField] private float gravity = -9.81f;
@@ -51,8 +49,6 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        inventory = transform.GetComponent<Inventory>();
-
 		input.MoveEvent += HandleMove;
         input.LookEvent += Look;
 
@@ -95,7 +91,10 @@ public class PlayerController : MonoBehaviour
 
     private void ToggleInteractionControls()
     {
-        ToggleFPControls(!isMovementEnabled, !isLookingEnabled);
+        if (interactor.CanInteract)
+        {
+            ToggleFPControls(!isMovementEnabled, !isLookingEnabled);
+        }
     }
 
     private void ToggleFPControls(bool movement, bool mouseLook)

@@ -8607,7 +8607,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 14327
-  characterController: {fileID: 0}
+  interactor: {fileID: 1703102770}
   gravity: -24.525
   speed: 4
   jumpHeight: 2
@@ -13912,6 +13912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81476c5c84c9a7648b818853a147e4da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanInteract: 0
   input: {fileID: 11400000, guid: a62c69c4cb5cca14b86f3e4f9ecda69b, type: 2}
   interactableCheck: {fileID: 1703102769}
   interactableMask:
@@ -13919,7 +13920,6 @@ MonoBehaviour:
     m_Bits: 2048
   hud: {fileID: 293932186}
   interactInfoText: {fileID: 404924421}
-  inReachOfTerminal: 0
   TerminalInReach: {fileID: 0}
 --- !u!1 &1711505790
 GameObject:
