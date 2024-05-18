@@ -24,7 +24,7 @@ public class CrowBar : MonoBehaviour
 
 	public void Use()
 	{
-		if (animator.GetBool("UsingTool") || Player.Instance.Inventory.InventoryMenu.activeSelf)
+		if (animator.GetBool("UsingTool") || Player.Instance.Inventory.InventoryView.gameObject.activeSelf)
 			return;
 
 		animator.SetBool("UsingTool", true);

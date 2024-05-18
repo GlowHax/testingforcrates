@@ -41,7 +41,7 @@ public class CrateOpeningTerminal : Terminal
 			SetInteractable(true);
 			crateOpeningManager.OpeningFinished = false;
 		}
-		else if (switchedOn)
+		else if(isOn)
         {
 			if (SelectedCrates.Count != 0 && !multiSelectionSpawnButton.activeInHierarchy)
 			{

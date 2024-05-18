@@ -4,37 +4,34 @@ using UnityEngine;
 
 public abstract class Terminal : MonoBehaviour, IInteractable
 {
-	[HideInInspector] public bool switchedOn = false;
-
 	[SerializeField] protected GameObject mainPanel;
 	[SerializeField] protected GameObject blackscreen;
 	[SerializeField] protected Transform interactionPoint;
 
 	protected Interactor interactor;
+	protected bool isOn = false;
 
 	public void Interact()
 	{
-		if(!switchedOn)
-		{
-			SwitchOn();
-		}
-		else
-		{
-			SwitchOff();
-		}
+		SwitchOn();
 	}
 
-	public virtual void SwitchOn()
+    public void EndInteraction()
+    {
+        SwitchOff();
+    }
+
+    public virtual void SwitchOn()
 	{
 		mainPanel.SetActive(true);
 		blackscreen.SetActive(false);
-		switchedOn = true;
+		isOn = true;
 	}
 
 	public virtual void SwitchOff()
 	{
 		blackscreen.SetActive(true);
 		mainPanel.SetActive(false);
-		switchedOn = false;
+		isOn = false;
 	}
 }

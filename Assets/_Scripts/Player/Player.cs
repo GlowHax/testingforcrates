@@ -10,8 +10,7 @@ public class Player : MonoBehaviour
 
 	public Camera Cam;
 	public Interactor interactor;
-	public CharacterMovement characterMovement;
-	public MouseLook mouseLook;
+	public PlayerController characterMovement;
 	public float Coins = 500;
 	public int Level = 1;
 	public int XP = 0;
@@ -47,31 +46,21 @@ public class Player : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Tab))
-		{
-			if (Inventory.Visible)
-			{
-                UIManager.Instance.ShowLast();
-            }
-			else
-			{
-                UIManager.Instance.ShowScreen(Inventory);
-            }
-        }
+		//if (Input.GetKeyDown(KeyCode.Tab))
+		//{
+		//	if (Inventory.Visible)
+		//	{
+  //              UIManager.Instance.ShowLast();
+  //          }
+		//	else
+		//	{
+  //              UIManager.Instance.ShowScreen(Inventory);
+  //          }
+  //      }
 		if(Input.GetKeyDown(KeyCode.Q))
 		{
 			SelectEquippedTool(!equippedTool.Prefab.activeSelf);
 		}
-	}
-
-	public void FPMovement(bool value)
-	{
-		characterMovement.Active = value;
-	}
-
-	public void FPMouse(bool value)
-	{
-		mouseLook.Active = value;
 	}
 
 	private void SelectEquippedTool(bool select)

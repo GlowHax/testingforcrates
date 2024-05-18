@@ -5,80 +5,100 @@ using UnityEngine;
 
 public class Interactor : MonoBehaviour
 {
-	[HideInInspector] public bool inReachOfTerminal = false;
-	[HideInInspector] public Terminal TerminalInReach;
-
+	[SerializeField] private InputReader input;
 	[SerializeField] private Transform interactableCheck;
 	[SerializeField] private LayerMask interactableMask;
 	[SerializeField] private GameObject hud;
 	[SerializeField] private GameObject interactInfoText;
 
+	[HideInInspector] public bool inReachOfTerminal = false;
+	[HideInInspector] public Terminal TerminalInReach;
+
 	private IInteractable interactable;
-	private bool interacting = false;
+	private bool canInteract = false;
+	private bool isInteracting = false;
 	private readonly Collider[] colliders = new Collider[1];
 
-	void Update()
+    private void Start()
     {
-		if (!interacting)
-		{
-			CheckForInteractables();
-		}
-		else if (Input.GetKeyUp(KeyCode.E))
-		{
-			Player.Instance.FPMovement(true);
-			Player.Instance.FPMouse(true);
-			hud.SetActive(true);
-			interacting = false;
-			if(interactable != null)
-			{
-				interactable.Interact();
-				interactable = null;
-			}
-		}
-	}
+		input.InteractEvent += HandleInteraction;
+    }
 
-	private void CheckForInteractables()
+    private void Update()
+    {
+		if (IsInteractableInReach())
+		{
+            if(IsPlayerFocusedOnInteractable())
+            {
+                canInteract = true;
+                interactInfoText.SetActive(true);
+            }
+            else
+            {
+                canInteract = false;
+                interactInfoText.SetActive(false);
+            }
+        }
+        else
+        {
+            canInteract = false;
+            interactInfoText.SetActive(false);
+        }
+    }
+
+    private void HandleInteraction()
+    {
+        if (canInteract && !isInteracting)
+        {
+            isInteracting = true;
+            hud.SetActive(false);
+            interactable.Interact();
+        }
+        else if(isInteracting)
+        {
+            hud.SetActive(true);
+            if (interactable != null)
+            {
+                interactable.EndInteraction();
+                interactable = null;
+            }
+            isInteracting = false;
+        }
+    }
+
+	private bool IsInteractableInReach()
 	{
-		int numFound = Physics.OverlapSphereNonAlloc(transform.position, 0.25f, colliders, interactableMask);
-		
-		if (numFound > 0)
-		{
-			var iteractionPoint = colliders[0];
-			if(iteractionPoint != null)
-			{
-				Ray ray = new Ray(Player.Instance.Cam.transform.position, Player.Instance.Cam.transform.forward);
-				Debug.DrawRay(ray.origin, ray.direction);
-				RaycastHit hitInfo;
-				if (Physics.Raycast(ray, out hitInfo, 1.5f, LayerMask.GetMask("Interactable")))
-				{
-					if (hitInfo.collider.isTrigger)
-						return;
+        bool isInReach = false;
+        int numFound = Physics.OverlapSphereNonAlloc(transform.position, 0.25f, colliders, interactableMask);
 
-					interactable = hitInfo.transform.parent.GetComponent<IInteractable>();
+        if (numFound > 0)
+        {
+            var iteractionPoint = colliders[0];
+            if (iteractionPoint != null)
+            {
+                isInReach = true;
+            }
+        }
 
-					if (interactable != null)
-					{
-						interactInfoText.SetActive(true);
+		return isInReach;
+    }
 
-						if (Input.GetKeyUp(KeyCode.E))
-						{
-							interacting = true;
-							Player.Instance.FPMovement(false);
-							Player.Instance.FPMouse(false);
-							hud.SetActive(false);
-							interactable.Interact();
-						}
-					}
-				}
-				else
-				{
-					interactInfoText.SetActive(false);
-				}
-			}
-		}
-		else
-		{
-			interactInfoText.SetActive(false);
-		}
-	}
+	private bool IsPlayerFocusedOnInteractable()
+	{
+        bool isPlayerFocused = false;
+        Ray ray = new Ray(Player.Instance.Cam.transform.position, Player.Instance.Cam.transform.forward);
+        Debug.DrawRay(ray.origin, ray.direction);
+        RaycastHit hitInfo;
+        if (Physics.Raycast(ray, out hitInfo, 1.5f, LayerMask.GetMask("Interactable")))
+        {
+            interactable = hitInfo.transform.parent.GetComponent<IInteractable>();
+
+            if (interactable != null)
+            {
+                isPlayerFocused = true;
+            }
+        }
+        
+        return isPlayerFocused;
+    }
 }

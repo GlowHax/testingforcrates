@@ -4,16 +4,18 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.EventSystems;
 using TMPro;
+using UnityEngine.Windows;
 
-public class Inventory : View
+public class Inventory : MonoBehaviour
 {
+	[SerializeField] private InputReader input;
     [SerializeReference] public List<ItemSlotInfo> Items = new List<ItemSlotInfo>();
 	public ItemPanel EquippedToolItemPanel;
 	public Tool EquippedTool;
 
 	[Space]
 	[Header("Menu Components")]
-    public GameObject InventoryMenu;
+    public View InventoryView;
     public ItemPanel ItemPanelPrefab;
     public GameObject ItemPanelGrid;
 	public TMP_Text TitleText;
@@ -28,31 +30,32 @@ public class Inventory : View
 	[SerializeField] private GameObject droppedItemObject;
 
 	private List<ItemPanel> existingPanels = new List<ItemPanel>();
+	private bool isOpen = false;
 
 	private void Awake()
 	{
 		GameManager.OnGameStateChanged += GameManager_OnGameStateChanged;
 	}
 
-	private void OnDestroy()
+    private void Start()
+    {
+        input.InventoryEvent += ToggleInventory;
+    }
+
+    private void OnDestroy()
 	{
 		GameManager.OnGameStateChanged -= GameManager_OnGameStateChanged;
 	}
 
-    public override void Initialize()
-    {
-
-    }
-
     private void Update()
 	{
-		if(Input.GetMouseButtonDown(0) && 
-			Mouse.ItemSlot.Item != null && 
-			InventoryMenu.activeSelf &&
-			!EventSystem.current.IsPointerOverGameObject())
-		{
-			DropItem(Mouse.ItemSlot.Item.Name, Mouse.ItemSlot.Stacks);
-		}
+		//if(Input.GetMouseButtonDown(0) && 
+		//	Mouse.ItemSlot.Item != null && 
+		//	InventoryMenu.activeSelf &&
+		//	!EventSystem.current.IsPointerOverGameObject())
+		//{
+		//	DropItem(Mouse.ItemSlot.Item.Name, Mouse.ItemSlot.Stacks);
+		//}
 	}
 
 	private void GameManager_OnGameStateChanged(GameState state)
@@ -130,7 +133,7 @@ public class Inventory : View
 					else
 					{
 						slot.Stacks += amount;
-						if (InventoryMenu.activeSelf)
+						if (InventoryView.gameObject.activeSelf)
 						{
 							RefreshInventory();
 							return 0;
@@ -161,7 +164,7 @@ public class Inventory : View
 				{
 					slot.Item = item;
 					slot.Stacks = amount;
-					if (InventoryMenu.activeSelf)
+					if (InventoryView.gameObject.activeSelf)
 					{
 						RefreshInventory();
 					}
@@ -172,7 +175,7 @@ public class Inventory : View
 
 		//no inventory space at all
 		Debug.Log($"No space in inventory ({item.Name})");
-		if (InventoryMenu.activeSelf)
+		if (InventoryView.gameObject.activeSelf)
 		{
 			RefreshInventory();
 		}
@@ -313,29 +316,32 @@ public class Inventory : View
 		Mouse.SetUI();
 	}
 
-    public override void Show(Transform parent = null)
+    private void ToggleInventory()
     {
-        Player.Instance.FPMouse(false);
-        RefreshInventory();
-        base.Show(parent);
-    }
-
-    public override void Hide()
-    {
-        if (Mouse.ItemSlot.Item != null)
-        {
-            //empty mouse slot to inventory
-            int amountToDrop = Player.Instance.Inventory.
-                AddItem(Mouse.ItemSlot.Item.Name, Mouse.ItemSlot.Stacks);
-            if (amountToDrop > 0)
-            {
-                //drop the rest if inventory is full
-                Player.Instance.Inventory.
-                    DropItem(Mouse.ItemSlot.Item.Name, amountToDrop);
-            }
+		if(!isOpen)
+		{
+            RefreshInventory();
+            UIManager.Instance.ShowScreen(InventoryView);
+			isOpen = true;
         }
-        Mouse.ClearSlot();
-        Player.Instance.FPMouse(true);
-        base.Hide();
+		else
+		{
+            if (Mouse.ItemSlot.Item != null)
+            {
+                //empty mouse slot to inventory
+                int overflowingItems = Player.Instance.Inventory.
+                    AddItem(Mouse.ItemSlot.Item.Name, Mouse.ItemSlot.Stacks);
+                if (overflowingItems > 0)
+                {
+                    //drop the rest if inventory is full
+                    Player.Instance.Inventory.
+                        DropItem(Mouse.ItemSlot.Item.Name, overflowingItems);
+                }
+                Mouse.ClearSlot();
+            }
+
+            UIManager.Instance.ShowLast();
+			isOpen = false;
+		}
     }
 }
