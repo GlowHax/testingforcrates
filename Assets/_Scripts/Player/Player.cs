@@ -57,10 +57,10 @@ public class Player : MonoBehaviour
   //              UIManager.Instance.ShowScreen(Inventory);
   //          }
   //      }
-		if(Input.GetKeyDown(KeyCode.Q))
-		{
-			SelectEquippedTool(!equippedTool.Prefab.activeSelf);
-		}
+		//if(Input.GetKeyDown(KeyCode.Q))
+		//{
+		//	SelectEquippedTool(!equippedTool.Prefab.activeSelf);
+		//}
 	}
 
 	private void SelectEquippedTool(bool select)

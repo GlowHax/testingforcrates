@@ -11,7 +11,7 @@ public class EquippedItemPanel : ItemPanel
         mouse.ItemSlot.Durability = ItemSlot.Durability;
         mouse.ItemSlot.MaxDurability = ItemSlot.MaxDurability;
 
-        Inventory.EquipTool(ItemSlot.Item as Tool, false);
+        Player.Instance.Inventory.EquipTool(ItemSlot.Item as Tool, false);
         ClearSlot();
     }
 
@@ -23,7 +23,7 @@ public class EquippedItemPanel : ItemPanel
             ItemSlot.Stacks = mouse.ItemSlot.Stacks;
             ItemSlot.Durability = mouse.ItemSlot.Durability;
             ItemSlot.MaxDurability = mouse.ItemSlot.MaxDurability;
-            Inventory.EquipTool(ItemSlot.Item as Tool, true);
+            Player.Instance.Inventory.EquipTool(ItemSlot.Item as Tool, true);
             mouse.ClearSlot();
         }
     }

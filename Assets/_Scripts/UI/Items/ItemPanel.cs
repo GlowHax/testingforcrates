@@ -7,7 +7,7 @@ using TMPro;
 
 public abstract class ItemPanel : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler, IPointerUpHandler
 {
-    [HideInInspector] public Inventory Inventory;
+    [HideInInspector] public InventoryView InventoryView;
     public ItemSlotInfo ItemSlot;
     public Image ItemImage;
     public TextMeshProUGUI StacksText;
@@ -144,9 +144,9 @@ public abstract class ItemPanel : MonoBehaviour, IPointerEnterHandler, IPointerD
 
     public void OnClick()
     {
-        if(Inventory != null)
+        if(InventoryView != null)
         {
-            mouse = Inventory.Mouse;
+            mouse = InventoryView.Mouse;
 
             //grab item if mouse slot is empty
             if(mouse.ItemSlot.Item == null)
@@ -177,7 +177,7 @@ public abstract class ItemPanel : MonoBehaviour, IPointerEnterHandler, IPointerD
 				}
 			}
 
-			Inventory.RefreshInventory();
+			InventoryView.RefreshInventory();
 		}
 	}
 }

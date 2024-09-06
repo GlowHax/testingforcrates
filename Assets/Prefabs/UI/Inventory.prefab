@@ -29,11 +29,11 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3798183361845370157}
   - {fileID: 8828347027894065091}
   m_Father: {fileID: 8828347026835016566}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7734568, y: 0.16477273}
   m_AnchorMax: {x: 0.83518517, y: 0.2784091}
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4a9fbad65d3b744bf462dd81c0b754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Inventory: {fileID: 0}
+  InventoryView: {fileID: 0}
   ItemSlot:
     Item: {fileID: 0}
     Name: 
@@ -128,9 +128,9 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3798183360625603760}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -203,9 +203,9 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8828347026835016566}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -278,6 +278,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4010015630930477575}
   - {fileID: 4010015629995795120}
@@ -304,7 +305,6 @@ RectTransform:
   - {fileID: 4010015629858972617}
   - {fileID: 4010015630595722348}
   m_Father: {fileID: 8828347026835016566}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.05387264, y: 0.16022727}
   m_AnchorMax: {x: 0.50448996, y: 0.70454544}
@@ -352,7 +352,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8828347026835016566}
-  - component: {fileID: 8828347026835016564}
+  - component: {fileID: 3111636721548655890}
   m_Layer: 7
   m_Name: Inventory
   m_TagString: Untagged
@@ -370,6 +370,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8828347026525931435}
   - {fileID: 8828347027792507623}
@@ -377,14 +378,13 @@ RectTransform:
   - {fileID: 8828347026707518123}
   - {fileID: 2149796372865171980}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -300, y: -200}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8828347026835016564
+--- !u!114 &3111636721548655890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -393,25 +393,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8828347026835016567}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda5ee4b71830be48b873ab9bc52a110, type: 3}
+  m_Script: {fileID: 11500000, guid: a31c71cea8599314883a532000ebfc42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Visible: 0
-  Items: []
-  EquippedToolItemPanel: {fileID: 6711553244687019251}
-  EquippedTool: {fileID: 0}
-  InventoryMenu: {fileID: 8828347026835016567}
+  objectInScene: {fileID: 0}
+  Inventory: {fileID: 0}
   ItemPanelPrefab: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
     type: 3}
+  EquippedToolItemPanel: {fileID: 6711553244687019251}
   ItemPanelGrid: {fileID: 8828347026707518116}
-  TitleText: {fileID: 8828347027792507622}
   Mouse: {fileID: 2149796372865171981}
-  InventorySize: 24
-  toolHolderTransform: {fileID: 0}
-  droppedItemObject: {fileID: 3069518473532175039, guid: ee7c583b9a1c3524ba7d7c5de3f9fdb0,
-    type: 3}
-  references:
-    version: 1
 --- !u!1 &8828347027182372385
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,9 +431,9 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8828347027894065091}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -515,9 +506,9 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8828347027894065091}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -590,9 +581,9 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8828347026835016566}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.37654322, y: 0.82954544}
   m_AnchorMax: {x: 0.6234568, y: 0.9431818}
@@ -723,11 +714,11 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8828347027274179870}
   - {fileID: 8828347027182372384}
   m_Father: {fileID: 3798183360625603760}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -747,6 +738,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026835016566}
     m_Modifications:
     - target: {fileID: 242149847058734968, guid: 7c7c5f987114eac4889f5ef5cc31f2e9,
@@ -860,7 +852,16 @@ PrefabInstance:
       value: Mouse
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c7c5f987114eac4889f5ef5cc31f2e9, type: 3}
+--- !u!224 &2149796372865171980 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 242149847058734968, guid: 7c7c5f987114eac4889f5ef5cc31f2e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 2200525643573402996}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2149796372865171981 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 242149847058734969, guid: 7c7c5f987114eac4889f5ef5cc31f2e9,
@@ -873,23 +874,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1218fe4820144b441a9228d9ffd9e81a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &2149796372865171980 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 242149847058734968, guid: 7c7c5f987114eac4889f5ef5cc31f2e9,
-    type: 3}
-  m_PrefabInstance: {fileID: 2200525643573402996}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8828347026264766406
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '16: -'
+      objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel (15)
+      value: '16: - Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -997,6 +1003,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015630841055847 stripped
 RectTransform:
@@ -1009,12 +1018,55 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Item
+      value: 
+      objectReference: {fileID: 11400000, guid: e0a768b090d108645af1f068536a7a04,
+        type: 2}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '1: Wood'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Stacks
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278808800089139, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278808800089149, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: cc140b9b3a69f8d4bbe0c1b9d234988d,
+        type: 3}
+    - target: {fileID: 5558278809489006644, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_text
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278809489007562, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel
+      value: '1: Wood Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -1122,6 +1174,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015630930477575 stripped
 RectTransform:
@@ -1134,12 +1189,49 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Item
+      value: 
+      objectReference: {fileID: 11400000, guid: 137109abfd677034dabfe464bcc574ab,
+        type: 2}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '8: Common Crate'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Stacks
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278808800089139, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278809489006644, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_text
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278809489007562, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel (7)
+      value: '8: Common Crate Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -1247,6 +1339,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015631053564787 stripped
 RectTransform:
@@ -1259,12 +1354,50 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Item
+      value: 
+      objectReference: {fileID: 11400000, guid: bd7a8b2e556f2a0448d73295326c366d,
+        type: 2}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '5: Crowbar'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Stacks
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Durability
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278808800089139, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278808800089149, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 229c00a7c2f093b418e4b8a71a7d471a,
+        type: 3}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel (4)
+      value: '5: Crowbar Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -1371,7 +1504,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7433414378865223680, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015631061084762 stripped
 RectTransform:
@@ -1384,12 +1525,23 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '22: -'
+      objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel (21)
+      value: '22: - Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -1497,6 +1649,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015631292908309 stripped
 RectTransform:
@@ -1509,12 +1664,23 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '18: -'
+      objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel (17)
+      value: '18: - Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -1622,6 +1788,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015631256687040 stripped
 RectTransform:
@@ -1634,12 +1803,50 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Item
+      value: 
+      objectReference: {fileID: 11400000, guid: bd7a8b2e556f2a0448d73295326c366d,
+        type: 2}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '6: Crowbar'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Stacks
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Durability
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278808800089139, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278808800089149, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 229c00a7c2f093b418e4b8a71a7d471a,
+        type: 3}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel (5)
+      value: '6: Crowbar Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -1746,7 +1953,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7433414378865223680, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015630326233777 stripped
 RectTransform:
@@ -1759,12 +1974,50 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Item
+      value: 
+      objectReference: {fileID: 11400000, guid: 42e728eecea2ba14194f9729efeb91e7,
+        type: 2}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '7: Iron'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Stacks
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278808800089139, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278808800089149, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0772234d01a1d2d40ab5e59f84fa3896,
+        type: 3}
+    - target: {fileID: 5558278809489007562, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel (6)
+      value: '7: Iron Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -1872,6 +2125,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015630388533211 stripped
 RectTransform:
@@ -1884,12 +2140,49 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Item
+      value: 
+      objectReference: {fileID: 11400000, guid: 137109abfd677034dabfe464bcc574ab,
+        type: 2}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '10: Common Crate'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Stacks
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278808800089139, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278809489006644, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_text
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278809489007562, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel (9)
+      value: '10: Common Crate Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -1997,6 +2290,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015630582952180 stripped
 RectTransform:
@@ -2009,12 +2305,23 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '24: -'
+      objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel (23)
+      value: '24: - Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -2122,6 +2429,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015630595722348 stripped
 RectTransform:
@@ -2134,12 +2444,23 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '21: -'
+      objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel (20)
+      value: '21: - Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -2247,6 +2568,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015630590704116 stripped
 RectTransform:
@@ -2259,12 +2583,55 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Item
+      value: 
+      objectReference: {fileID: 11400000, guid: 51423e4bafffbdd4db01dac2b4fba375,
+        type: 2}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '4: Stone'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Stacks
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278808800089139, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278808800089149, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d906790e9d0df7d4298269587296b7ca,
+        type: 3}
+    - target: {fileID: 5558278809489006644, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_text
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278809489007562, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel (3)
+      value: '4: Stone Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -2372,6 +2739,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015630742902410 stripped
 RectTransform:
@@ -2384,12 +2754,49 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Item
+      value: 
+      objectReference: {fileID: 11400000, guid: 137109abfd677034dabfe464bcc574ab,
+        type: 2}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '9: Common Crate'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Stacks
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278808800089139, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278809489006644, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_text
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278809489007562, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel (8)
+      value: '9: Common Crate Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -2497,6 +2904,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015629781888256 stripped
 RectTransform:
@@ -2509,12 +2919,23 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '12: -'
+      objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel (11)
+      value: '12: - Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -2622,6 +3043,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015629788157640 stripped
 RectTransform:
@@ -2634,12 +3058,23 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '23: -'
+      objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel (22)
+      value: '23: - Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -2747,6 +3182,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015629858972617 stripped
 RectTransform:
@@ -2759,12 +3197,23 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '17: -'
+      objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel (16)
+      value: '17: - Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -2872,6 +3321,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015629948918670 stripped
 RectTransform:
@@ -2884,12 +3336,23 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '19: -'
+      objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel (18)
+      value: '19: - Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -2997,6 +3460,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015629917258523 stripped
 RectTransform:
@@ -3009,12 +3475,55 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Item
+      value: 
+      objectReference: {fileID: 11400000, guid: e0a768b090d108645af1f068536a7a04,
+        type: 2}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '2: Wood'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Stacks
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278808800089139, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278808800089149, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: cc140b9b3a69f8d4bbe0c1b9d234988d,
+        type: 3}
+    - target: {fileID: 5558278809489006644, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_text
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278809489007562, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel (1)
+      value: '2: Wood Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -3122,6 +3631,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015629995795120 stripped
 RectTransform:
@@ -3134,12 +3646,23 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '20: -'
+      objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel (19)
+      value: '20: - Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -3247,6 +3770,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015630235560051 stripped
 RectTransform:
@@ -3259,12 +3785,55 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Item
+      value: 
+      objectReference: {fileID: 11400000, guid: 51423e4bafffbdd4db01dac2b4fba375,
+        type: 2}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '3: Stone'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Stacks
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278808800089139, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278808800089149, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d906790e9d0df7d4298269587296b7ca,
+        type: 3}
+    - target: {fileID: 5558278809489006644, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_text
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558278809489007562, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel (2)
+      value: '3: Stone Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -3372,6 +3941,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015629175606925 stripped
 RectTransform:
@@ -3384,12 +3956,23 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '14: -'
+      objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel (13)
+      value: '14: - Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -3497,6 +4080,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015629291443079 stripped
 RectTransform:
@@ -3509,12 +4095,23 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '15: -'
+      objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel (14)
+      value: '15: - Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -3622,6 +4219,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015629255746559 stripped
 RectTransform:
@@ -3634,12 +4234,23 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '13: -'
+      objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel (12)
+      value: '13: - Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -3747,6 +4358,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015629541851194 stripped
 RectTransform:
@@ -3759,12 +4373,23 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8828347026707518123}
     m_Modifications:
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: InventoryView
+      value: 
+      objectReference: {fileID: 3111636721548655890}
+    - target: {fileID: 2644484454075819490, guid: 75910245ed9491141bd1cf6fe41ab69b,
+        type: 3}
+      propertyPath: ItemSlot.Name
+      value: '11: -'
+      objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398176, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
       propertyPath: m_Name
-      value: InventoryItemPanel (10)
+      value: '11: - Panel'
       objectReference: {fileID: 0}
     - target: {fileID: 5558278809761398177, guid: 75910245ed9491141bd1cf6fe41ab69b,
         type: 3}
@@ -3872,6 +4497,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75910245ed9491141bd1cf6fe41ab69b, type: 3}
 --- !u!224 &4010015629554355311 stripped
 RectTransform:

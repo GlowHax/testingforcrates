@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class UIManager : Singleton<UIManager>
 {
-    [SerializeField] private InputReader input;
     [SerializeField] private Transform viewParent;
 
+    [SerializeField] private Transform hud;
     [SerializeField] private View startingView;
     [SerializeField] private View pauseView;
 
-    private View currentView;
+    [SerializeField] private View currentView;
     private Stack<View> history = new Stack<View>();
 
     protected override void Awake()
@@ -21,7 +21,7 @@ public class UIManager : Singleton<UIManager>
 
     private void GameManager_OnGameStateChanged(GameState state)
     {
-        if (state == GameState.Pause)
+        if(state == GameState.Pause)
         {
             ShowScreen(pauseView);
         }
@@ -34,10 +34,12 @@ public class UIManager : Singleton<UIManager>
     public void HideAll()
     {
         currentView.Hide();
-        foreach (View view in history)
+        currentView = null;
+        while(history.Count > 0)
         {
             history.Pop().Hide();
         }
+        hud.gameObject.SetActive(true);
     }
 
     public void ShowScreen(View view, bool remember = true)
@@ -45,12 +47,17 @@ public class UIManager : Singleton<UIManager>
         if(currentView != null)
         {
             currentView.Hide();
-            if (remember)
+            if(remember)
             {
                 history.Push(currentView);
             }
         }
+        else
+        {
+            hud.gameObject.SetActive(false);
+        }
 
+        
         view.Show(viewParent);
         currentView = view;
     }
@@ -64,6 +71,8 @@ public class UIManager : Singleton<UIManager>
         else if(history.Count == 0)
         {
             currentView.Hide();
+            currentView = null;
+            hud.gameObject.SetActive(true);
         }
     }
 }

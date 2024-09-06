@@ -13,7 +13,8 @@ public class ResourceSystem : Singleton<ResourceSystem>
 	{
 		base.Awake();
 		GameManager.OnGameStateChanged += GameManager_OnGameStateChanged;
-	}
+        LoadResources();
+    }
 
 	private void OnDestroy()
 	{

@@ -10,22 +10,22 @@ public class CrowBar : MonoBehaviour
 
 	private void Start()
 	{
-		inventoryItemPanel = Player.Instance.Inventory.EquippedToolItemPanel;
+		//inventoryItemPanel = Player.Instance.Inventory.EquippedToolItemPanel;
 		inventoryItem = inventoryItemPanel.ItemSlot.Item as Tool;
 	}
 
 	private void Update()
 	{
-		if (Input.GetMouseButtonDown(0))
-		{
-			Use();
-		}
+		//if (Input.GetMouseButtonDown(0))
+		//{
+		//	Use();
+		//}
 	}
 
 	public void Use()
 	{
-		if (animator.GetBool("UsingTool") || Player.Instance.Inventory.InventoryView.gameObject.activeSelf)
-			return;
+		//if (animator.GetBool("UsingTool") || Player.Instance.Inventory.InventoryView.gameObject.activeSelf)
+		//	return;
 
 		animator.SetBool("UsingTool", true);
 		Ray ray = new Ray(Player.Instance.Cam.transform.position, 

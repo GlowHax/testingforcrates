@@ -6,6 +6,15 @@
             "id": "0a25223b-c0d5-4969-83a4-e2d05c42f625",
             "actions": [
                 {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "d94c58f2-9862-40a3-b438-b9a28e85eb4e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Move",
                     "type": "Value",
                     "id": "4196ac71-04d6-44d7-b8cb-57a1eb6e5afb",
@@ -54,15 +63,6 @@
                     "name": "Tool Use",
                     "type": "Button",
                     "id": "75bd8fa8-810d-4c27-a38c-62cee59ea4cf",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Pause",
-                    "type": "Button",
-                    "id": "d94c58f2-9862-40a3-b438-b9a28e85eb4e",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -149,17 +149,6 @@
                 },
                 {
                     "name": "",
-                    "id": "26290039-6d2d-4c89-b5fa-033f32cc3e7c",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "ac8b55f3-e5f1-4cf0-87c6-1c627681301a",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -188,6 +177,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "26290039-6d2d-4c89-b5fa-033f32cc3e7c",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

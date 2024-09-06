@@ -13,7 +13,7 @@ public class Mouse : MonoBehaviour
 
 	void Update()
     {
-        transform.position = Input.mousePosition;      
+        transform.position = Input.mousePosition;  
 	}
 
     public void SetUI()

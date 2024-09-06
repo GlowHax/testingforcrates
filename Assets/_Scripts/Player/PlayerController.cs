@@ -39,11 +39,11 @@ public class PlayerController : MonoBehaviour
     {
         if (state == GameState.Pause)
         {
-            Cursor.lockState = CursorLockMode.None;
+            ToggleFPControls(false, false);
         }
         else if (state == GameState.Running)
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            ToggleFPControls(true, true);
         }
     }
 
@@ -101,6 +101,15 @@ public class PlayerController : MonoBehaviour
     {
         isMovementEnabled = movement;
         isLookingEnabled = mouseLook;
+
+        if (isLookingEnabled && Cursor.lockState != CursorLockMode.Locked)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else if (!isLookingEnabled && Cursor.lockState != CursorLockMode.None)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     private void HandleMove(Vector3 dir)
@@ -112,23 +121,11 @@ public class PlayerController : MonoBehaviour
     {
         if (isLookingEnabled)
         {
-            if (Cursor.lockState != CursorLockMode.Locked)
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-
             xRotation -= dir.y * mouseSensitivity;
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
             cam.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
             transform.Rotate(Vector3.up * dir.x * mouseSensitivity);
-        }
-        else
-        {
-            if(Cursor.lockState != CursorLockMode.None)
-            {
-                Cursor.lockState = CursorLockMode.None;
-            }
         }
     }
 

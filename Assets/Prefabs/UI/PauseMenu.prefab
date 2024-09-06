@@ -449,9 +449,9 @@ RectTransform:
   m_Children:
   - {fileID: 3538795007108866078}
   - {fileID: 7021180285760529928}
-  - {fileID: 1468354332596623244}
-  - {fileID: 8679084800319975668}
   - {fileID: 1476444107612425253}
+  - {fileID: 8679084800319975668}
+  - {fileID: 1468354332596623244}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -473,6 +473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Visible: 0
   menu: {fileID: 0}
+  input: {fileID: 11400000, guid: a62c69c4cb5cca14b86f3e4f9ecda69b, type: 2}
 --- !u!1 &6613193527886800491
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,8 +729,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+      - m_Target: {fileID: 1519523778259092879}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -994,9 +995,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: ShowMenu
+      - m_Target: {fileID: 1519523778259092879}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -4,17 +4,15 @@ using UnityEngine;
 
 public abstract class View : MonoBehaviour
 {
-    public bool Visible;
-    private GameObject objectInScene;
+    public GameObject objectInScene;
     public abstract void Initialize();
     public virtual void Hide()
     {
         Destroy(objectInScene);
-        Visible = false;
+        objectInScene = null;
     }
     public virtual void Show(Transform parent = null)
     {
         objectInScene = Instantiate(gameObject, parent);
-        Visible = true;
     }
 }

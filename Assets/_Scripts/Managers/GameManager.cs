@@ -16,19 +16,17 @@ public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private InputReader input;
 
-    public GameState State { get; private set; }
+    [field:SerializeField] public GameState State { get; private set; }
 
     public static event Action<GameState> OnGameStateChanged;
 
-    void Start()
+    private void Start()
     {
         input.PauseEvent += PauseGame;
         input.ResumeEvent += ResumeGame;
 
         ChangeState(GameState.Starting);
     }
-
-    
 
     public void ChangeState(GameState newState)
     {
@@ -49,12 +47,12 @@ public class GameManager : Singleton<GameManager>
         OnGameStateChanged?.Invoke(State);
     }
 
-    private void PauseGame()
+    public void PauseGame()
     {
         ChangeState(GameState.Pause);
     }
 
-    private void ResumeGame()
+    public void ResumeGame()
     {
         ChangeState(GameState.Running);
     }
